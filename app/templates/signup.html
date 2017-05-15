@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html ><head>
+<title>注册</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <link rel="stylesheet" href="{{url_for('.static', filename='css1/login2.css') }}">
+<script src="{{url_for('.static', filename='js1/jquery-1.9.0.min.js') }}"></script>
+<script src="{{url_for('.static', filename='js1/login.js') }}"></script>
+<script src="{{url_for('.static', filename='js1/jquery-html5Validate.js') }}"></script>
+</head>
+<body>
+<h1 style="margin-top:180px;">Tstor</h1>
+
+<div class="login" style="margin-top:50px;">
+    
+    <div class="header">
+        <div class="switch" id="switch">
+			<a class="switch_btn" id="switch_login" href="javascript:void(0);" tabindex="8">注册</a>
+        </div>
+    </div>
+
+  <!--注册-->
+    <div class="qlogin" id="qlogin" style="">
+        <div class="web_login">
+            <!--<form name="form2" id="regUser" accept-charset="utf-8"  action="/signup" method="post">-->
+                <input type="hidden" name="to" value="reg"/>
+                <input type="hidden" name="did" value="0"/>
+                <ul class="reg_form" id="reg-ul">
+                    <!-- <div id="userCue" class="cue">快速注册请注意格式</div> -->
+                    <li>
+                        <label for="user"  class="input-tips2"></label>
+                        <div class="inputOuter2">
+                            <input type="text" id="user"  maxlength="16" class="inputstyle2" placeholder="用户名" required/>
+                        </div>
+                        <p id="flash_message" style="width: 200px;margin-left:36px;float: left;text-align: center;color: red;display: none;">
+                          此用户名已被占用，请立即修改
+                        </p>
+                    </li>
+                    <li>
+                        <label for="passwd" class="input-tips2"></label>
+                        <div class="inputOuter2">
+                            <input type="email" id="passwd"  class="inputstyle2" placeholder="邮箱" required/>
+
+                        </div>
+                            <p id="flash_message1" style="width: 200px;margin-left:36px;float: left;text-align: center;color: red;display: none;">
+                              此邮箱已被注册，请立即修改
+                            </p>
+                            <p id="erroeEmail" style="width: 200px;margin-left:36px;float: left;text-align: center;color: red;display: none;">
+                              请输入正确的邮箱地址
+                            </p>
+                    </li>
+                    <li>
+                        <label for="passwd2" class="input-tips2"></label>
+                        <div class="inputOuter2">
+                            <input type="password" id="passwd2" maxlength="16" class="inputstyle2" placeholder="密码" required/>
+                        </div>
+                        <p id="pasNone" style="width: 200px;margin-left:36px;float: left;text-align: center;color: red;display: none;">
+                          密码不能为空
+                        </p>
+                    </li>
+                    <li>
+                        <div class="inputArea">
+                            <input type="button" id="reg"  style="margin-top:10px;margin-left:66px;width:150px;"  class="button_blue" value="注册"/>
+                        </div>
+                    </li>
+                    <div class="cl"></div>
+                </ul>
+            <!--</form>-->
+        </div>
+    </div>
+    <!--注册end-->
+</div>
+<script>
+$SCRIPT_ROOT = {{ request.script_root|tojson | safe }};
+</script>
+</body></html>

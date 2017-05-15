@@ -1,0 +1,12 @@
+.content .content-item {
+    display: none;
+}
+
+.content .content-item.active {
+    display: block;
+}
+
+.content .content-item.volume.active{
+    display: inline-block;
+    width: 100%;
+}

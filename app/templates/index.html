@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Tstore管理系统</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="{{url_for('.static', filename='bootstrap/css/bootstrap.min.css') }}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{url_for('.static', filename='css/font-awesome-4.6.3/css/font-awesome.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{url_for('.static', filename='dist/css/skins/_all-skins.min.css') }}">
+  <link rel="stylesheet" href="{{url_for('.static', filename='dist/css/AdminLTE.min.css') }}">
+  
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{{url_for('.static', filename='plugins/iCheck/flat/blue.css') }}">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="{{url_for('.static', filename='plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="{{url_for('.static', filename='dist/css/index.css') }}">
+
+  <link rel="stylesheet" href="{{url_for('.static', filename='css/bootstrap-table.min.css') }}">
+<!-- Ion Slider -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/ionslider/ion.rangeSlider.css') }}">
+<!-- ion slider Nice -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/ionslider/ion.rangeSlider.skinFlat.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-toggle.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/indexstyle.css') }}">
+  <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.localizationTool.css') }}">-->
+  
+</head>
+<body class="hold-transition skin-blue sidebar-mini" id="skin-black1">
+	
+	<div id="loadingPage">
+		<div id="gifOuter">
+			<img src="{{url_for('.static', filename='dist/img/1.gif') }}" id="loadImg"/>
+			<p id="status"></p>
+		</div>	
+	</div>
+	
+<div class="wrapper">
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="index.html" class="logo" id="skin-black2">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>T</b>store</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg">
+      	<!--<b>Tstore</b>管理系统-->
+      	<img src="{{url_for('.static', filename='dist/img/logo.png') }}" id='logoImg'/>
+      </span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" id="skin-black3">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" id="slidebar_nav">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <div class="navbar-custom-menu">
+      	<div class="zxx_test">
+          <div class="zxx_v_menu">
+            <div class="click_area" id="menuClick">
+              <i class="v_menu"  hidefocus="true">
+                <span class="rel">select  language</span>
+              </i>
+              <span class="point_out">
+                <span class="point_in">▼</span>
+              </span>
+            </div>
+            <ul class="v_menu_list" id="vMenuList">
+              <li><i data-number="zh" class="lang_list">中文</i></li>
+              <li><i data-number="en" class="lang_list">English</i></li>
+			            <!--<li><i data-number="ja" class="lang_list">Janpanese</i></li>-->
+            </ul>
+          </div>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="{{url_for('.static', filename='dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
+              <span class="hidden-xs" id="username">{{username}}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="{{url_for('.static', filename='dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                <p><span> {{ username }} - Assistant Prof.</span><small>Member since Nov. 2012</small></p>
+              </li>
+              <!-- Menu Body -->
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Followers</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                  </div>
+                </div>
+                <!-- /.row -->
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="/logout" class="btn btn-default btn-flat">退出</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="{{url_for('.static', filename='dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>{{username}}</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+      <!-- search form -->
+
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul id="tabs" class="sidebar-menu" data-tabs="tabs">
+        <li role="presentation" class="menu-item abstract active"> <!--data-item="abstract"> -->
+          <a href="#sysOverview" data-toggle="tab">
+            <i class="fa fa-home"></i> <span alt="sysOverview" data-lang="sysGeneral"></span>
+          </a>
+        </li>
+        <li role="presentation" class="menu-item volume"> <!-- data-item="volume"> -->
+          <a href="#volumeM" data-toggle="tab">
+            <i class="fa fa-database"></i> <span alt="volumeM" data-lang="volumeMana"></span>
+            <i class="fa fa-chevron-down"></i>
+          </a>
+        </li>
+        <li>
+        	<div id="volumeMNav" >
+	        	<div id="volume_list" data-lang='volume_list'><i class="fa fa-chevron-down"></i></div>
+	        	<ul class="nav-stacked" id="volumeTabs" data-tabs="tabs">
+								<!--<li role="presentation"><a href="#c" data-toggle="tab">volumeI</a></li>-->
+	        	</ul>
+	        	<div id="addVolume" data-toggle="modal" data-target="#addVolumeM" data-lang='add_volume'></div>
+	        </div>
+        </li>
+        
+        <li role="presentation" class="menu-item system"> <!-- data-item="system"> -->
+          <a href="#sysM" data-toggle="tab">
+            <i class="fa fa-desktop"></i> <span alt="sysM" data-lang="systemMana"></span>
+          </a>
+        </li>
+        <li role="presentation" class="menu-item monitor" > <!-- data-item="monitor"> -->
+          <a href="#monitorM" data-toggle="tab">
+            <i class="fa fa-line-chart"></i> <span alt="monitorM" data-lang="monitorMana"></span>
+            <i class="fa fa-chevron-down"></i>
+          </a>
+        </li>
+        <li>
+        	<ul id="monitorMNav">
+          	
+        	</ul>
+        </li>       
+        <li role="presentation" class="menu-item help" >
+          <a href="#help" data-toggle="tab">
+            <i class="fa fa-file-text-o"></i> <span alt="help" data-lang="help"></span>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" id="skin-black4">
+    <!-- Content Header (Page header) -->
+		<!--<!-- Main content -->
+    <section class="content" id="contentBody">
+      <div class="content-item abstract active" id="sysOverview">         
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+              <!-- 饼图 -->
+              <div class="box box-primary">
+                <div class="box-header">
+                  <i class="fa fa-bar-chart-o"></i>
+                  <h3 class="box-title" data-lang="sys_capacity"></h3>
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div id="sysUsage"></div>
+                </div>
+                <!-- /.box-body-->
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-cubes"></i></span>
+                <div class="info-box-content" class="color_bla">
+                  <span class="info-box-text" data-lang="total_capacity"></span>
+                  <span class="info-box-number" id="sysTotal"></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-cube"></i></span>
+                <div class="info-box-content" class="color_bla">
+                  <span class="info-box-text" data-lang="free_capacity"></span>
+                  <span class="info-box-number" id="sysFree"></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-database"></i></span>
+                <div class="info-box-content" class="color_bla">
+                  <span class="info-box-text" data-lang="volume_count"></span>
+                  <span class="info-box-number" id="volumeNumber"></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div class="box box-primary">
+                <div class="box-header">
+                	<i class="fa fa-bar-chart-o"></i>
+                  <h3 class="box-title" data-lang="volume_info"></h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding" class="color_bla">
+                  <table data-toggle="table" id="volumeList" data-unique-id="volumeName">
+                    <thead>
+                    <tr>
+                      <th data-align="center" data-field="volumeName">卷名称</th>
+                      <th data-align="center" data-field="status">状态</th>
+                      <th data-align="center" data-field="capacity">容量</th>
+                      <th data-align="center" data-field="NFS">NFS</th>
+                      <th data-align="center" data-field="Samba">Samba</th>
+                      <th data-align="center" data-field="iSCSI">iSCSI</th>
+                      <th data-align="center" data-field="Swift">Swift</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.box-body -->
+              </div>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+      		<div class="row">
+      			<div class="col-md-1"></div>
+      			<div class="col-md-10">
+      				<div class="box box-primary">
+                <div class="box-header">
+                  <i class="fa fa-bar-chart-o"></i>
+                  <h3 class="box-title" data-lang="disk_io"></h3>
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="box-body" id="diskBox">
+                  <div id="sum_diskio_speed"></div>
+                </div>
+              </div>				
+      			</div>
+      			<div class="col-md-1"></div>
+      		</div>
+      		<div class="row">
+      			<div class="col-md-1"></div>
+      			<div class="col-md-10">
+      				<div class="box box-primary">
+                <div class="box-header">
+                  <i class="fa fa-bar-chart-o"></i>
+                  <h3 class="box-title" data-lang="network_io"></h3>
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="box-body" id="networkBox">
+                  <div id="sum_networkio_speed"></div>
+                </div>
+              </div>				
+      			</div>
+      			<div class="col-md-1"></div>
+      		</div>
+      </div>
+      <div class="content-item volume" id="volumeM">
+          <div class="col-md-1">
+            <div class="row">
+              <div class="text-left">
+                <div class="btn-group">
+<!--                  <button type="button" class="btn btn-danger btn-sm" id="removeVolume" data-toggle="modal" data-target="#removeConfirmM" disabled>删除</button>-->
+                  <!--<button type="button" class="btn btn-primary btn-sm" id="refreshVolume"><i class="fa fa-refresh"></i></button>-->
+                  <!--<button type="button" class="btn btn-primary btn-sm" id="addVolume" data-toggle="modal" data-target="#addVolumeM"><i class="fa fa-plus"></i></button>-->
+                </div>
+              </div>
+            </div>
+            <!--<div class="box box-primary" style="background-color: white;margin-left: 0px">
+              <div class="box-header with-border">
+                <h3 class="box-title" style="text-align: center">存储卷</h3>
+                <div class="box-tools">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="box-body no-padding">
+                <ul class="nav" data-toggle="tabs">-->
+                  <!--<li role="presentation"><a href="#c" data-toggle="tab">volumeI</a></li>-->
+                <!--</ul>-->
+              <!--</div>-->
+              <!-- /.box-body -->
+            <!--</div>-->
+          </div>
+          <div class="col-md-10">
+            <h3 id="noVolume" data-lang="no_volume"></h3>
+            <div class="tab-content" id="volumeContent">
+              <div id="c" class="tab-pane">              	
+                <div class="row">
+                  <div class="col-md-3">
+                    <!-- 饼状图 -->
+                    <div class="box box-primary">
+                      <div class="box-header">
+                        <i class="fa fa-bar-chart-o"></i>
+                        <h3 class="box-title" data-lang="volume_capacity">存储卷容量</h3>
+                        <div class="box-tools pull-right">
+                          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="box-body">
+                        <div id="volumeUsage"></div>
+                      </div>
+                      <!-- /.box-body-->
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <!-- 读写速度 -->
+                    <!-- interactive chart -->
+                    <div class="box box-primary">
+                      <div class="box-header">
+                        <i class="fa fa-bar-chart-o"></i>
+                        <h3 class="box-title">IO读写速度</h3>
+                        <div class="box-tools pull-right">
+                          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="box-body" id="rwBox">
+                        <div id="rwSpeed"></div>
+                      </div>
+                      <!-- /.box-body-->
+                    </div>
+                    <!-- /.box -->
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-5">
+                    <div class="box box-primary">
+                      <div class="box-header">
+                      	<i class="fa fa-bar-chart-o"></i>
+                        <h3 class="box-title">存储卷操作</h3>
+                      </div>
+                      <!-- /.box-header -->
+                      <div class="box-body table-responsive no-padding" id="style1">
+                        <div class="row" id="style2">
+                          <button class="btn btn-app" disabled>
+                            <i class="fa fa-play"></i> 启动
+                          </button>
+                          <button class="btn btn-app">
+                            <i class="fa fa-repeat"></i> 重启
+                          </button>
+                          <button class="btn btn-app">
+                            <i class="fa fa-pause"></i> 停止
+                          </button>
+                        </div>
+                      </div>
+                      <!-- /.box-body -->
+                   </div>
+                  </div>
+                  <div class="col-md-7">
+                    <table data-toggle="table" data-unique-id="client" id="table_test">
+                      <thead>
+                      <tr>
+                        <th data-align="center" data-field="ck"></th>
+                        <th data-align="center" data-field="client">客户端</th>
+                        <th data-align="center" data-field="address">网址</th>
+                        <th data-align="center" data-field="username">用户名</th>
+                        <th data-align="center" data-field="password">密码</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="box box-primary">
+                    <div class="box-header">
+                    	<i class="fa fa-bar-chart-o"></i>
+                      <h3 class="box-title">存储设备</h3>
+                    </div>
+                    <div class="box-body">
+                      <a class="btn btn-app" rel="tooltip" title="存储设备名称: 166.111.131.144:/few/fe<br>状态: 在线" data-html="true">
+                        <i class="fa fa-database text-danger"></i>块名称
+                      </a>
+                      <a class="btn btn-app" rel="tooltip" title="存储设备名称: 166.111.131.144:/few/fe<br>状态: 在线" data-html="true">
+                        <i class="fa fa-database text-success"></i>块名称
+                      </a>
+                      <a class="btn btn-app" rel="tooltip" title="存储设备名称: 166.111.131.144:/few/fe<br>状态: 在线" data-html="true">
+                        <i class="fa fa-database text-success"></i>块名称
+                      </a>
+                      <a class="btn btn-app" rel="tooltip" title="存储设备名称: 166.111.131.144:/few/fe<br>状态: 在线" data-html="true">
+                        <i class="fa fa-database text-success"></i>块名称
+                      </a>
+                      <a class="btn btn-app" rel="tooltip" title="存储设备名称: 166.111.131.144:/few/fe<br>状态: 在线" data-html="true">
+                        <i class="fa fa-database text-success"></i>块名称
+                      </a>
+                      <a class="btn btn-app" rel="tooltip" title="存储设备名称: 166.111.131.144:/few/fe<br>状态: 在线" data-html="true">
+                        <i class="fa fa-database text-success"></i>块名称
+                      </a>
+                      <a class="btn btn-app" rel="tooltip" title="存储设备名称: 166.111.131.144:/few/fe<br>状态: 在线" data-html="true">
+                        <i class="fa fa-database text-success"></i>块名称
+                      </a>
+                      <a class="btn btn-app" rel="tooltip" title="存储设备名称: 166.111.131.144:/few/fe<br>状态: 在线" data-html="true">
+                        <i class="fa fa-database text-success"></i>块名称
+                      </a>
+                      <a class="btn btn-app" rel="tooltip" title="存储设备名称: 166.111.131.144:/few/fe<br>状态: 在线" data-html="true">
+                        <i class="fa fa-database text-success"></i>块名称
+                      </a>
+                      <a class="btn btn-app" rel="tooltip" title="存储设备名称: 166.111.131.144:/few/fe<br>状态: 在线" data-html="true">
+                        <i class="fa fa-database text-success"></i>块名称
+                      </a>
+                      <a class="btn btn-app" rel="tooltip" title="存储设备名称: 166.111.131.144:/few/fe<br>状态: 在线" data-html="true">
+                        <i class="fa fa-database text-success"></i>块名称
+                      </a>
+                    </div>
+                    <!-- /.box-body -->
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="box box-primary">
+                    <div class="box-header">
+                      <i class="ion ion-clipboard"></i>
+                      <h3 class="box-title">快照</h3>
+                    </div>
+                    <div class="box-body">
+                      <table data-toggle="table" id="snapshot" data-unique-id="snapshotName">
+                        <thead>
+                        <tr>
+                          <th data-align="center" data-field="snapshotName">快照名称</th>
+                          <th data-align="center" data-field="createTime">创建时间</th>
+                          <th data-align="center" data-field="snapshotOp">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>快照1</td>
+                          <td>2016-04-23 20:00:00</td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-sm" id="style3"><i class="fa fa-reply"></i></button>
+                            <button type="button" class="btn btn-danger btn-sm" id="style4"><i class="fa fa-times"></i></button>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix no-border">
+                      <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i>添加快照</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+      </div>
+      <div class="content-item system" id ="sysM">           
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div class="box" id = "serversList">
+                <div class="box-header">
+                  <h3 class="box-title" data-lang="machine_info"></h3>
+                </div>
+              </div>
+            </div>
+          	<div class="col-md-1"></div>
+          </div>       
+      </div>
+      <div class="content-item monitor"  id="monitorM">     		      		      		      		      		                                 
+              <div class = "row">
+                <div class ="col-md-1"></div>
+                <div class="col-md-10">
+                  <div class="box" id="ServersMoni">
+
+                  </div>
+
+                </div>
+              	<div class="col-md-1"></div>
+              </div>
+      </div>
+      <div class="content-item help" id="help">
+          帮助
+      </div>
+      <div class="modal fade modal-danger" id="removeConfirmM">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" data-lang="dangerous"></h4>
+            </div>
+            <div class="modal-body">
+              <p data-lang="lose_data"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" data-lang="close"></button>
+              <button type="button" class="btn btn-outline" id="removeConfirm" data-lang="confirm"></button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <div class="modal fade modal-default" id="addVolumeM">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="tianjia" data-lang = "addVolume"></h4>
+            </div>
+            <div class="modal-body">
+              <form role="form" id="volumeCForm" data-toggle="validator">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="cVolumeName" data-lang="volumeName"></label>
+                    <input type="text" class="form-control" id="cVolumeName" placeholder="存储卷名称" data-lang="volumeName" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="vCapacity" data-lang="capacity"></label>
+                    <input id="vCapacity" type="text" name="vCapacity" value="" >
+                  </div>
+                  <div class="form-group">
+                    <label for="Redundancy" data-lang="redundancy_ratio"></label>
+                    <select id="Redundancy" class="form-control">
+
+                      <!--{% for item in redundancy_ratio %}
+                      <option value="{{item}}">{{item}}%</option>
+                      {% endfor %}-->
+                    </select>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+							 </form>
+                <div class="box-footer">
+                  <button id="subVolumeC" class="btn btn-primary" data-lang="create"></button>
+                </div>
+             
+
+            </div>
+            <!--<div class="modal-footer">-->
+              <!--<button type="button" class="btn btn-outline pull-left" data-dismiss="modal">关闭</button>-->
+              <!--<button type="button" class="btn btn-outline" id="addConfirm">确认</button>-->
+            <!--</div>-->
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+<!--    	<div class="modal fade" id="loadingpage"></div>-->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.0
+    </div>
+    <strong>Copyright &copy; 2015-2016 <a href="http://madsys.cs.tsinghua.edu.cn/">Madsys Group</a>.</strong> All rights
+    reserved.
+  </footer>
+
+
+  <div class="control-sidebar-bg"></div>
+</div>
+<!--让IE浏览器支持h5标签的解决方法-->
+<script src ="{{url_for('.static', filename='html5shiv.min.js') }}"></script>
+<!-- jQuery 2.2.0 -->
+<script src="{{url_for('.static', filename='plugins/jQuery/jQuery-2.2.0.min.js') }}"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{{url_for('.static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{url_for('.static', filename='dist/js/app.min.js') }}"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="{{url_for('.static', filename='bootstrap-table.min.js') }}"></script>
+<!-- Latest compiled and minified Locales -->
+<script src="{{url_for('.static', filename='bootstrap-table-zh-CN.min.js') }}"></script>
+<script src="{{url_for('.static', filename='plugins/chartjs/highstock.js') }}"></script>
+<!-- Ion Slider -->
+<!-- FLOT CHARTS -->
+<!--<script src="{{url_for('.static',filename='plugins/flot/jquery.flot.min.js')}}"></script>-->
+<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+<!--<script src="{{url_for('.static',filename='plugins/flot/jquery.flot.resize.min.js')}}"></script>-->
+<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+<!--<script src="{{url_for('.static',filename='plugins/flot/jquery.flot.pie.min.js')}}"></script>-->
+<script src="{{url_for('.static',filename='plugins/ionslider/ion.rangeSlider.min.js')}}"></script>
+<script src="{{url_for('.static',filename='bootstrap-toggle.min.js')}}"></script>
+<!--引入外部js文件-->
+
+<script src="{{url_for('.static',filename='separate/volume_mana.js')}}"></script>
+<script src="{{url_for('.static',filename='separate/sys_mana.js')}}"></script>
+<script src="{{url_for('.static',filename='separate/moni_mana.js')}}"></script>
+<script src="{{url_for('.static',filename='separate/sys_general.js')}}"></script>
+<!--<script src="{{url_for('.static',filename='separate/jquery.localizationTool.js')}}"></script>-->
+<script src="{{url_for('.static',filename='separate/jquery.i18n.properties-1.0.9.js')}}"></script>
+<!--<script src="{{url_for('.static',filename='separate/switch.js')}}"></script>-->
+<script type="text/javascript">
+
+  $SCRIPT_ROOT = {{ request.script_root|tojson | safe }};
+
+  function downloadJSAtOnload() {
+    var element = document.createElement("script");
+    element.src = "{{url_for('.static',filename='separate/switch.js')}}";
+    document.body.appendChild(element);
+  }
+if (window.addEventListener) {window.addEventListener("load", downloadJSAtOnload, false);}
+else if (window.attachEvent) {window.attachEvent("onload", downloadJSAtOnload);}
+else {window.onload = downloadJSAtOnload;}
+
+
+</script>
+
+</body>
+</html>

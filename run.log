@@ -1,0 +1,64 @@
+supervisor: couldn't exec /root/wangjiang/gf-manager/glfs-web/run.py: ENOENT
+supervisor: child process was not spawned
+supervisor: couldn't exec /root/wangjiang/gf-manager/glfs-web/run.py: ENOENT
+supervisor: child process was not spawned
+supervisor: couldn't exec /root/wangjiang/gf-manager/glfs-web/run.py: ENOENT
+supervisor: child process was not spawned
+supervisor: couldn't exec /root/wangjiang/gf-manager/glfs-web/run.py: ENOENT
+supervisor: child process was not spawned
+/usr/lib/python2.7/site-packages/flask/exthook.py:71: ExtDeprecationWarning: Importing flask.ext.cache is deprecated, use flask_cache instead.
+  .format(x=modname), ExtDeprecationWarning
+166.111.131.62 - - [2017-01-19 09:33:46] "GET / HTTP/1.1" 200 29259 0.063535
+166.111.131.62 - - [2017-01-19 09:33:46] "GET /static/dist/css/AdminLTE.min.css HTTP/1.1" 200 98137 0.001788
+166.111.131.62 - - [2017-01-19 09:33:46] "GET /static/css/font-awesome-4.6.3/css/font-awesome.min.css HTTP/1.1" 200 29348 0.001590
+166.111.131.62 - - [2017-01-19 09:33:46] "GET /static/plugins/iCheck/flat/blue.css HTTP/1.1" 200 1761 0.001523
+166.111.131.62 - - [2017-01-19 09:33:46] "GET /static/plugins/jvectormap/jquery-jvectormap-1.2.2.css HTTP/1.1" 200 1140 0.001332
+166.111.131.62 - - [2017-01-19 09:33:46] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 121548 0.010930
+166.111.131.62 - - [2017-01-19 09:33:46] "GET /static/dist/css/skins/_all-skins.min.css HTTP/1.1" 200 42286 0.001497
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/dist/css/index.css HTTP/1.1" 200 472 0.001355
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/css/bootstrap-table.min.css HTTP/1.1" 200 5795 0.000889
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/plugins/ionslider/ion.rangeSlider.css HTTP/1.1" 200 3834 0.000930
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/plugins/ionslider/ion.rangeSlider.skinFlat.css HTTP/1.1" 200 2588 0.001417
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/bootstrap-toggle.min.css HTTP/1.1" 200 1896 0.001454
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/css/indexstyle.css HTTP/1.1" 200 7475 0.000988
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/html5shiv.min.js HTTP/1.1" 200 3011 0.001333
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/plugins/jQuery/jQuery-2.2.0.min.js HTTP/1.1" 200 85873 0.001695
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 37154 0.001455
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/dist/js/app.min.js HTTP/1.1" 200 9983 0.001354
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/bootstrap-table.min.js HTTP/1.1" 200 50652 0.001466
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/bootstrap-table-zh-CN.min.js HTTP/1.1" 200 1134 0.001298
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/plugins/chartjs/highstock.js HTTP/1.1" 200 249719 0.017932
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/plugins/flot/jquery.flot.min.js HTTP/1.1" 200 52581 0.001663
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/bootstrap-toggle.min.js HTTP/1.1" 200 4415 0.001388
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/plugins/ionslider/ion.rangeSlider.min.js HTTP/1.1" 200 39090 0.001416
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/plugins/flot/jquery.flot.pie.min.js HTTP/1.1" 200 12302 0.001385
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/plugins/flot/jquery.flot.resize.min.js HTTP/1.1" 200 2301 0.001264
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/separate/volume_mana.js HTTP/1.1" 200 43110 0.001478
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/separate/sys_mana.js HTTP/1.1" 200 3952 0.001292
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/separate/moni_mana.js HTTP/1.1" 200 28926 0.001317
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/separate/sys_general.js HTTP/1.1" 200 18980 0.001492
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/dist/img/loading.gif HTTP/1.1" 200 4200 0.001540
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/dist/img/logo.png HTTP/1.1" 200 29847 0.001456
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/dist/img/user2-160x160.jpg HTTP/1.1" 200 7336 0.001360
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/css/font-awesome-4.6.3/fonts/fontawesome-webfont.woff2?v=4.6.3 HTTP/1.1" 200 72178 0.001670
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/dist/css/toadOcfmlt9b38dHJxOBGCOFnW3Jk0f09zW_Yln67Ac.woff2 HTTP/1.1" 200 14274 0.001608
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/dist/css/ODelI1aHBYDBqgeIAH2zlNV_2ngZ8dMf8fLgjYEouxg.woff2 HTTP/1.1" 200 14590 0.001593
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /static/dist/css/toadOcfmlt9b38dHJxOBGEo0As1BFRXtCDhS66znb_k.woff2 HTTP/1.1" 200 14174 0.001562
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /overview/volumeData HTTP/1.1" 200 9687 0.020874
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /cluster/info HTTP/1.1" 200 851621 0.206059
+166.111.131.62 - - [2017-01-19 09:33:47] "GET /cluster/info HTTP/1.1" 200 851621 0.058201
+166.111.131.62 - - [2017-01-19 09:33:48] "GET /overview/volumeData HTTP/1.1" 200 9687 0.001590
+166.111.131.62 - - [2017-01-19 09:33:48] "GET /overview/capacity HTTP/1.1" 200 150 0.002778
+166.111.131.62 - - [2017-01-19 09:33:48] "GET /static/plugins/ionslider/img/sprite-skin-flat.png HTTP/1.1" 200 567 0.001545
+166.111.131.62 - - [2017-01-19 09:33:48] "GET /favicon.ico HTTP/1.1" 404 342 0.012801
+166.111.131.62 - - [2017-01-19 09:33:49] "GET /monitor/info HTTP/1.1" 200 62081 0.176199
+166.111.131.62 - - [2017-01-19 09:33:49] "GET /monitor/info HTTP/1.1" 200 62081 0.001056
+166.111.131.62 - - [2017-01-19 09:33:50] "GET /monitor/info HTTP/1.1" 200 62081 0.097003
+166.111.131.62 - - [2017-01-19 09:33:51] "GET /monitor/info HTTP/1.1" 200 62081 0.001327
+166.111.131.62 - - [2017-01-19 09:33:52] "GET /monitor/info HTTP/1.1" 200 62081 0.112445
+166.111.131.62 - - [2017-01-19 09:33:53] "GET /monitor/info HTTP/1.1" 200 62081 0.001461
+166.111.131.62 - - [2017-01-19 09:33:54] "GET /monitor/info HTTP/1.1" 200 62081 0.098545
+166.111.131.62 - - [2017-01-19 09:33:55] "GET /monitor/info HTTP/1.1" 200 62081 0.001337
+166.111.131.62 - - [2017-01-19 09:33:56] "GET /monitor/info HTTP/1.1" 200 62081 0.119351
+166.111.131.62 - - [2017-01-19 09:33:57] "GET /monitor/info HTTP/1.1" 200 62081 0.001377
+166.111.131.62 - - [2017-01-19 09:33:58] "GET /monitor/info HTTP/1.1" 200 62081 0.099554
