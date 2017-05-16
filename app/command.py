@@ -88,7 +88,6 @@ def refresh_createvolume_status(volume_name='all'):
             Redis.set(BRICK_PREFIX + volume_name, json.dumps(bricks))
             # add volume name to name-set
             Redis.sadd(VOLUME_NAMES, volume_name)
-
             # set volume info for volume created manually
             volume_info = Redis.hgetall(VOLUME_PREFIX + volume_name)
             if empty(volume_info) or VOLUME_NFS not in volume_info:

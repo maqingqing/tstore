@@ -605,16 +605,19 @@ def get_cluster_info():
             server['serverId'] = machine['hostname']
             server['serverStatus'] = machine['status']
             cluster_devices = json.loads(Redis.get(CLUSTER_DEVICE+machine['hostname']), 'utf-8')
+            # print cluster_devices
             disks = list()
             if machine['status'] == 'Connected':
                 raw_disks = cluster_devices
                 for raw_disk in raw_disks:
-                    disk = dict()
-                    disk['diskId'] = raw_disk
-                    disk['diskStatus'] = 'health'
-                    disks.append(disk)
+                    if len(raw_disk) <= 3:
+                        disk = dict()
+                        disk['diskId'] = raw_disk
+                        disk['diskStatus'] = 'health'
+                        disks.append(disk)
             server['disks'] = disks
             servers.append(server)
+        # print servers
 
         i = 0
         while i < len(cluster_list):

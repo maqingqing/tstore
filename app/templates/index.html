@@ -638,19 +638,19 @@
 <script src="{{url_for('.static',filename='separate/sys_general.js')}}"></script>
 <!--<script src="{{url_for('.static',filename='separate/jquery.localizationTool.js')}}"></script>-->
 <script src="{{url_for('.static',filename='separate/jquery.i18n.properties-1.0.9.js')}}"></script>
-<!--<script src="{{url_for('.static',filename='separate/switch.js')}}"></script>-->
+<script src="{{url_for('.static',filename='separate/switch.js')}}"></script>
 <script type="text/javascript">
 
   $SCRIPT_ROOT = {{ request.script_root|tojson | safe }};
 
-  function downloadJSAtOnload() {
-    var element = document.createElement("script");
-    element.src = "{{url_for('.static',filename='separate/switch.js')}}";
-    document.body.appendChild(element);
-  }
-if (window.addEventListener) {window.addEventListener("load", downloadJSAtOnload, false);}
-else if (window.attachEvent) {window.attachEvent("onload", downloadJSAtOnload);}
-else {window.onload = downloadJSAtOnload;}
+//  function downloadJSAtOnload() {
+//    var element = document.createElement("script");
+//    element.src = "{{url_for('.static',filename='separate/switch.js')}}";
+//    document.body.appendChild(element);
+//  }
+//if (window.addEventListener) {window.addEventListener("load", downloadJSAtOnload, false);}
+//else if (window.attachEvent) {window.attachEvent("onload", downloadJSAtOnload);}
+//else {window.onload = downloadJSAtOnload;}
 
 
 </script>

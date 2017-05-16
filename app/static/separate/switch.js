@@ -1,4 +1,4 @@
-// window.onload=function(){
+window.onload=function(){
 	
 	$(".v_menu_list li:odd").addClass("alt");	
 	$("#menuClick").click(function(){
@@ -46,7 +46,7 @@
 		}
 	});
 
-	// setTimeout(function(){
+	setTimeout(function(){
 		var dafal_lang='zh';
 		$.loadProperties(dafal_lang);
 		var lang_html=$('.lang_list[data-number="'+dafal_lang+'"]').html();
@@ -63,5 +63,5 @@
 			$.loadProperties(record_lang);
 			e.preventDefault;
 		});
-	// },1500);
-// };
+	},1500);
+};

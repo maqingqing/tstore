@@ -12,32 +12,46 @@ $(document).ready(function(){
 		    for (count = 0; count < servers.length; count++){
 		      	serverslist.append(serversListFormat(servers[count]["serverId"], count));
 		    }
+
 		    for (count = 0; count < servers.length; count++){
+		    	var serverid = '#diskinfo' + servers[count]["serverId"];
+				var disklist = $(serverid);
+				var diskRow1 = $("<div></div>");
+				var diskRow2 = $("<div></div>");
+				var diskRow3 = $("<div></div>");
 		      	for (var i = 0; i < servers[count]["disks"].length; i++){
-			        var serverid = '#diskinfo' + servers[count]["serverId"];
-			        var disklist = $(serverid);
-			        disklist.append(diskContentFormat(servers[count]["disks"][i]["diskId"], i, count));
+
+					if(i<4){
+
+						diskRow1.append(diskContentFormat(servers[count]["disks"][i]["diskId"], i, count));
+					}else if(i>=4&&i<8){
+			        	diskRow2.append(diskContentFormat(servers[count]["disks"][i]["diskId"], i, count));
+					}else if(i>=8&&i<12){
+						diskRow3.append(diskContentFormat(servers[count]["disks"][i]["diskId"], i, count));
+					}
+
 		      	}
+		      	disklist.append(diskRow1);
+				disklist.append(diskRow2);
+				disklist.append(diskRow3);
+
 		    }
+
+		    // console.log(diskRow);
 		    
 		    function serversListFormat(serverId, i) {
 			    if (servers[i]["serverStatus"] == "Connected"){
-			      return '<div class="info-box"><span style = "color:green" class="info-box-icon "><i class="fa fa-fw fa-tv" title="服务器名称:'+ serverId+'"></i></span>' +
-			              '<div class="info-box-content" style="color: black"> ' +
-			              '<span class="info-box-text">'+ serverId + '</span> ' +
-			              '<div class="info-box-number" id="diskinfo'+ serverId + '">' +
-			              '<button type="button" class="btn btn-primary btn-sm col-md-offset-10 pull-right" id="serverRestart"><i class="fa fa-refresh"></i><i style="font-style:normal;" data-lang="restart_mac"></i></button>'+
-			              '</div>' +
-			              '</div>'+
+			      return '<div class="info-box"><span style = "color:green;" class="info-box-icon"><i class="fa fa-fw fa-tv" title="服务器名称:'+ serverId+'"></i></span>'
+					  + '<div class="info-box-content" style="color: black;"> '
+					  + '<span class="info-box-text">'+ serverId + '</span> '
+					  + '<div class="info-box-number" id="diskinfo'+ serverId + '"></div><button type="button" class="btn btn-primary btn-sm col-md-offset-10 pull-right" id="serverRestart">'
+					  +'<i class="fa fa-refresh"></i><i style="font-style:normal;" data-lang="restart_mac"></i></button></div>'+
 			      '</div>';
 			    }else{
 			      return '<div class="info-box"><span style = "color:darkslategray" class="info-box-icon"><i class="fa fa-fw fa-tv" title="服务器名称:'+ serverId+'"></i></span>  ' +
 			              '<div class="info-box-content" style="color: black"> ' +
 			              '<span class="info-box-text">'+ serverId + '</span>' +
-			              '<div class="info-box-number" id="diskinfo'+ serverId +'">' +
-			              '<button type="button" class="btn btn-primary btn-sm col-md-offset-10 pull-right" id="serverRestart"><i class="fa fa-refresh"></i>立即重启</button>'+
-			              '</div>' +
-			              '</div>'+
+			              '<div class="info-box-number" id="diskinfo'+ serverId +'"></div><button type="button" class="btn btn-primary btn-sm col-md-offset-10 pull-right" id="serverRestart"><i class="fa fa-refresh" data-lang="restart_mac"></i></button></div>'+
 			      '</div>';
 			    }
 			}
