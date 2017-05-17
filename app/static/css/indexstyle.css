@@ -66,6 +66,12 @@ div#sysM div.info-box-content span.info-box-text {
 
 div#sysM div.info-box-content div.info-box-number {
     margin-top : 10px;
+	overflow: hidden;
+}
+
+div#sysM div.info-box-content div.info-box-number div.diskFa{
+	float: left;
+	margin-right: 26px;
 }
 
 div#sysM div.info-box-content div.info-box-number i.glyphicon-tasks {
@@ -77,8 +83,11 @@ div#sysM div.info-box-content div.info-box-number i.glyphicon-tasks {
 @media only screen and (max-width:1920px ) {
 	div#sysM div.info-box-content div.info-box-number i.glyphicon-tasks {
 		font-size: 33px;
-		display: inline-block;
-		margin-right: 50px;
+		display:block;
+		margin-top:6px;
+	}
+	div#sysM div.info-box-content div.info-box-number {
+		min-height:132px;
 	}
 }
 
@@ -86,14 +95,20 @@ div#sysM div.info-box-content div.info-box-number i.glyphicon-tasks {
 	div#sysM div.info-box-content div.info-box-number i.glyphicon-tasks {
 		font-size: 22px;
 	}
+	div#sysM div.info-box-content div.info-box-number {
+		min-height:100px;
+	}
 }
 @media only screen and (max-width:1100px ) {
 	div#sysM div.info-box-content div.info-box-number i.glyphicon-tasks {
 		font-size: 15px;
 	}
+	div#sysM div.info-box-content div.info-box-number {
+		min-height:80px;
+	}
 }
 
-div#sysM div.info-box-content button#serverRestart {
+div#sysM div.info-box-content  button.serverRestart {
    /* background-color : #3c8dbc;*/
     color : #FFFFFF;
     border : none;
@@ -105,12 +120,12 @@ div#sysM div.info-box-content button#serverRestart {
     bottom: 36px;
 }
 
-button#serverRestart {
+button.serverRestart {
     margin-left:0;
 }
 
 
-div#sysM div.info-box-content  button#serverRestart i {
+div#sysM div.info-box-content button.serverRestart i {
     display : inline-block;
     margin-right : 5px;
 }
@@ -147,7 +162,7 @@ div#monitorM div#ServersMoni div.box-header h3:first-child {
 
 div#monitorM div#ServersMoni div.box.box-primary {
     border : 1px solid #3C8DBC ;
-    border-radius : none;
+    /*border-radius : none;*/
     margin : 16px 0 10px 0;
 }
 
