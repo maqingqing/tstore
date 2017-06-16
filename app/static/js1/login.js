@@ -1,4 +1,6 @@
 $(function(){
+
+
 	$('#user').blur(function () {
 		var username = $(this).val();
 		$.ajax({
@@ -35,7 +37,6 @@ $(function(){
 				email: email
 			},
 			success:function(data){
-				console.log(data);
 				if(data=="False"){
 					$('#flash_message').html("此邮箱已被占用，请立即修改");
 					$('#flash_message1').css("display","block");
@@ -44,7 +45,7 @@ $(function(){
 				}
 			}
 		})
-    })
+    });
 
     // $('#regUser').submit(function () {
 		// var status = $('#flash_message').css("display");
@@ -103,11 +104,11 @@ $(function(){
     });
 
 
-
-
 	$("#loginBtn").click(function () {
 		var username=$('#u').val();
 		var password=$('#p').val();
+		console.log(username);
+		console.log(password);
 		if(username==""){
 			$('#none1').css("display","block");
 			// $('#u').focus();
@@ -127,7 +128,6 @@ $(function(){
                 success: function (data) {
                     console.log(data);
                     if (data == "true") {
-                        console.log("hdfh")
                         window.location.href = "/index";
                     } else {
                         $('#wrong').css("display", "block");

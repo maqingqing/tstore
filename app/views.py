@@ -99,6 +99,7 @@ def signup():
         return render_template('/signup.html')
 
 
+# 注册时确认用户名和邮箱
 @app.route('/confirm/name', methods=['GET', 'POST'])
 def confirmName():
     username = request.values.get('username')
@@ -119,6 +120,7 @@ def confirmEmail():
     return flag
 
 
+# 登出
 @app.route('/logout')
 def logout():
     session.pop('user', None)
@@ -185,9 +187,7 @@ def get_volume_info(volume_name):
 def add_volume():
     # try:
         while True:
-            print "add pre"
             result = rcon.set(LOCK_PASS, LOCK_PASS_VALUE, nx=True)
-            print result
             if result:
                 # parse request form
                 volume_name = request.args.get(NAME)
@@ -208,7 +208,6 @@ def add_volume():
                     return jsonify(success=False, message=NO_INFORMATION)
                 keys = cluster_disks.keys()
                 for node in cluster_list:
-                    print node
                     if node not in keys:
                         return jsonify(success=False, message=DIS_MATCH_INFORMATION)
                     else:
@@ -232,10 +231,7 @@ def add_volume():
                 return jsonify(success=True, message="finish")
 
 
-    # except (KeyError, TypeError), e:
-    #     return jsonify(success=False, message=str(e))
-
-
+# 处理同时create volume操作引发的冲突
 @app.route('/create/getStatus')
 def get_create_status():
     ajax_username = request.args.get(USERNAME)
@@ -245,6 +241,7 @@ def get_create_status():
     if not redis_username:
         status = READY
         return jsonify(success=True, status="wait", message=status)
+    # 如果当前用户id和数据库里的用户不相符，页面就显示正在排队
     if ajax_username == redis_username:
         status = Redis.get(CREATE_STATUS)
         logging.info(status)

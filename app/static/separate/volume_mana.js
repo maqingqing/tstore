@@ -177,6 +177,7 @@ $(document).ready(function(){
 									alert(fail );
 								}
 							}
+
 							$.ajax({
 								url:$SCRIPT_ROOT + '/create/getStatus',
 								data:{
@@ -314,7 +315,7 @@ $(document).ready(function(){
 	  		var V_list_show_height = Math.round($("#volumeTabs li:eq(0)").outerHeight()*hei_length);
 	  		var Vshow_height = Math.round($("#volumeTabs li:eq(0)").outerHeight()*hei_length+$("#volumeMNav div:eq(0)").outerHeight()*2);
 	  		var Vshow_height_div = Math.round($("#volumeMNav div:eq(0)").outerHeight()*2);
-  			$("#VolumeList .fa.fa-chevron-down").toggleClass("fa-chevron-UP");
+  			$("#volume_list .fa.fa-chevron-down").toggleClass("fa-chevron-UP");
 	    	if(volume_list_show == "0px"){
 	    		$("#volumeTabs").stop().animate({
 	    			height:V_list_show_height+6+"px"
@@ -1186,22 +1187,39 @@ $(document).ready(function(){
 
   	function formatOperation(volumeName, status){
     	if (status == 'Started'){
-      		return '<div class="box box-primary"><div class="box-header">'
-      			+'<i class="fa fa-bar-chart-o"></i><h3 class="box-title">存储卷操作</h3></div><div class="box-body table-responsive no-padding"  style="color: black;height: 170px">'
-  				+'<div class="row" style="text-align: center;margin-top: 39px;width: 100%;margin-left:-6px">'
-  				+'<button class="btn btn-app btn-bigger" id="' + volumeName +'Start" disabled data-lang="start"><i class="fa fa-play"></i> 启动</button>'
-  				+'<button class="btn btn-app btn-bigger" id="' + volumeName + 'Restart" data-lang="restart"><i class="fa fa-repeat"></i> 重启</button>'
-  				+'<button class="btn btn-app btn-bigger" id="' + volumeName + 'Stop" data-lang="stop"><i class="fa fa-pause"></i> 停止</button>'
-  				+'<button class="btn btn-app btn-danger btn-bigger" id="' + volumeName + 'remove" data-toggle="modal" data-target="#removeConfirmM" disabled data-lang="delete"><i class="fa fa-remove"></i> 删除</button>'
-  				+'</div></div></div>';
+      		return '<div class="box box-primary">' +
+                        '<div class="box-header">'
+      			            +'<i class="fa fa-bar-chart-o"></i>' +
+                            '<h3 class="box-title">存储卷操作</h3>' +
+                        '</div>' +
+                        '<div class="box-body table-responsive no-padding"  style="color: black;height: 170px">'
+  				            +'<div class="row" style="text-align: center;margin-top: 39px;width: 100%;margin-left:-6px">'
+  				                +'<button class="btn btn-app btn-bigger" id="' + volumeName +'Start" disabled >' +
+                                    '<i class="fa fa-play"></i><i style="font-style: normal" data-lang="start"></i> ' +
+                                '</button>'
+  				                +'<button class="btn btn-app btn-bigger" id="' + volumeName + 'Restart"  >' +
+                                    '<i class="fa fa-repeat" data-mqq="sgl"></i><i style="font-style: normal" data-lang="restart"></i>' +
+                                '</button>'
+  				                +'<button class="btn btn-app btn-bigger" id="' + volumeName + 'Stop">' +
+                                    '<i class="fa fa-pause"></i><i style="font-style: normal" data-lang="stop">停止</i>' +
+                                '</button>'
+  				                +'<button class="btn btn-app btn-danger btn-bigger" id="' + volumeName + 'remove" data-toggle="modal" data-target="#removeConfirmM" disabled >' +
+                                    '<i class="fa fa-remove"></i> <i style="font-style: normal" data-lang="delete">删除</i>' +
+                                '</button>'
+  				            +'</div>' +
+                        '</div>' +
+                    '</div>';
     	} else {
-		    return '<div class="box box-primary"><div class="box-header with-border"><h3 class="box-title">存储卷操作'
-			    +'</h3></div><div class="box-body table-responsive no-padding" style="color: black;height: 170px">'
-			    +'<div class="row" style="text-align: center;margin-top: 39px;width: 100%;margin-left:-6px">'
-			    +'<button class="btn btn-app btn-bigger" id="' + volumeName +'Start" data-lang="start"><i class="fa fa-play"></i> 启动</button>'
-			    +'<button class="btn btn-app btn-bigger" id="' + volumeName + 'Restart" disabled data-lang="restart"><i class="fa fa-repeat"></i> 重启</button>'
-			    +'<button class="btn btn-app btn-bigger" id="' + volumeName + 'Stop" disabled data-lang="stop"><i class="fa fa-pause"></i> 停止</button>'
-			    +'<button class="btn btn-app btn-danger btn-bigger" id="' + volumeName + 'remove" data-toggle="modal" data-target="#removeConfirmM" data-lang="delete"><i class="fa fa-remove"></i> 删除</button>'
+		    return '<div class="box box-primary">'
+                        + '<div class="box-header with-border">'
+                            +'<h3 class="box-title">存储卷操作</h3>'
+                        +'</div>'
+                        +'<div class="box-body table-responsive no-padding" style="color: black;height: 170px">'
+			                +'<div class="row" style="text-align: center;margin-top: 39px;width: 100%;margin-left:-6px">'
+			                    +'<button class="btn btn-app btn-bigger" id="' + volumeName +'Start"><i class="fa fa-play"></i><i style="font-style: normal" data-lang="start">启动</i></button>'
+			    +'<button class="btn btn-app btn-bigger" id="' + volumeName + 'Restart" disabled ><i class="fa fa-repeat"></i><i style="font-style: normal" data-lang="restart">重启</i></button>'
+			    +'<button class="btn btn-app btn-bigger" id="' + volumeName + 'Stop" disabled ><i class="fa fa-pause"></i><i style="font-style: normal" data-lang="stop">停止</i></button>'
+			    +'<button class="btn btn-app btn-danger btn-bigger" id="' + volumeName + 'remove" data-toggle="modal" data-target="#removeConfirmM" ><i class="fa fa-remove"></i><i style="font-style: normal" data-lang="delete">删除</i></button>'
 			    +'</div></div></div>';
     	}
   	}

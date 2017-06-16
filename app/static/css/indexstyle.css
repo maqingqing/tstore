@@ -34,6 +34,7 @@ div#sysM div.info-box {
     margin-bottom : 20px;
     border : 1px solid #3c8dbc;
     min-height: 100px;
+	position: relative;
 }
 
 div#sysM div.info-box span.info-box-icon {
@@ -51,9 +52,17 @@ div#sysM div.info-box span i {
     margin : 10px;
     font-size:50px;
 }
+div#sysM div.info-box span i.cabinet{
+	background: url("../dist/img/cabinet.png");
+    background-size: cover;
+    position: absolute;
+    left: -13px;
+    bottom: -3px;
+}
+
 
 div#sysM div.info-box-content {
-    margin-left : 88px;
+    margin-left : 140px;
     padding : 10px;
     min-height : 88px;
 }
@@ -74,14 +83,15 @@ div#sysM div.info-box-content div.info-box-number div.diskFa{
 	margin-right: 26px;
 }
 
-div#sysM div.info-box-content div.info-box-number i.glyphicon-tasks {
+div#sysM div.info-box-content div.info-box-number i.fa-database {
     margin-right : 10px;
     /*font-size: 20px;*/
     position: relative;
     top: 16px;
 }
+
 @media only screen and (max-width:1920px ) {
-	div#sysM div.info-box-content div.info-box-number i.glyphicon-tasks {
+	div#sysM div.info-box-content div.info-box-number i.fa-database {
 		font-size: 33px;
 		display:block;
 		margin-top:6px;
@@ -89,22 +99,34 @@ div#sysM div.info-box-content div.info-box-number i.glyphicon-tasks {
 	div#sysM div.info-box-content div.info-box-number {
 		min-height:132px;
 	}
+	div#sysM div.info-box span i.cabinet{
+		height: 143px;
+		width: 145px;
+	}
 }
 
 @media only screen and (max-width:1366px ) {
-	div#sysM div.info-box-content div.info-box-number i.glyphicon-tasks {
+	div#sysM div.info-box-content div.info-box-number i.fa-database {
 		font-size: 22px;
 	}
 	div#sysM div.info-box-content div.info-box-number {
 		min-height:100px;
 	}
+	div#sysM div.info-box span i.cabinet{
+		height: 120px;
+		width: 120px;
+	}
 }
 @media only screen and (max-width:1100px ) {
-	div#sysM div.info-box-content div.info-box-number i.glyphicon-tasks {
+	div#sysM div.info-box-content div.info-box-number i.fa-database {
 		font-size: 15px;
 	}
 	div#sysM div.info-box-content div.info-box-number {
 		min-height:80px;
+	}
+	div#sysM div.info-box span i.cabinet{
+		height: 100px;
+		width: 100px;
 	}
 }
 
@@ -460,4 +482,31 @@ table{
 .v_menu, .lang_list{
 	font-style: normal;
 	color:#34538b;
+}
+.zhishi{
+	width: 30px;
+	height:30px;
+	border:none;
+	border-radius: 30px;
+	background-color: green;
+}
+.diskStatus{
+	position: absolute;
+	right: 10px;
+	bottom: 63px;
+	height: 20px;
+	width: 105px;
+	outline: none;
+	border:1px solid darkgray;
+	line-height:16px;
+	text-align: center;
+}
+.diskStatus.success{
+	background-color: #88D066;
+}
+.diskStatus.Disabled{
+	background-color: #DF0909;
+}
+.diskStatus.danger{
+	background-color: #f5cb3e;
 }

@@ -22,7 +22,7 @@ window.onload=function(){
             $(".rel").html(checked);
         };
         $("#vMenuList").slideUp();  
-    })
+    });
 
 	var record_lang=null;
 	$.extend({

@@ -160,6 +160,7 @@ $(document).ready(function() {
         credits: {
             enabled: false
         },
+
         chart: {
             backgroundColor: "#ECF0F5",
             type: "line",
@@ -282,6 +283,7 @@ $(document).ready(function() {
                 var initArr = clusterInfo["init_disk_read_sum"];
                 var initLength = initArr.length;
                 var hopeLength = 360;
+
                 if(initLength<hopeLength){
                     for (var i = initLength; i < hopeLength; i++) {
                         initArr[i] = 0;
@@ -451,6 +453,7 @@ $(document).ready(function() {
                         initArr[i] = 0;
                     };
                 }
+
                 for (j = -359; j < 0; j += 1) {
                     var valueTime = initArr[j + 359];
                     var JsonData = eval('(' + valueTime + ')');

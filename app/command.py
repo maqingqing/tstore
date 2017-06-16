@@ -396,6 +396,7 @@ def peer_status():
 
 def refresh_pool_list():
     success, result = execute_pool_list()
+    # print result
     if success:
         Redis.set(CLUSTER_LIST, json.dumps(result))
     return result

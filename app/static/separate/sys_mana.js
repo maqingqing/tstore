@@ -9,11 +9,11 @@ $(document).ready(function(){
 			var serversStatusinfo = serverStatusInfomat;
 			var servers = serversStatusinfo["servers"];
 			var count = 0;
-		    for (count = 0; count < servers.length; count++){
-		      	serverslist.append(serversListFormat(servers[count]["serverId"], count));
-		    }
 
 		    for (count = 0; count < servers.length; count++){
+
+		    	serverslist.append(serversListFormat(servers[count]["serverId"], count));//添加机器数量
+
 				var serverid = '#diskinfo' + servers[count]["serverId"];
 				var disklist = $(serverid);
 				var diskRow1=$("<div class='diskFa'></div>");
@@ -35,8 +35,38 @@ $(document).ready(function(){
 				disklist.append(diskRow2);
 				disklist.append(diskRow3);
 				disklist.append(diskRow4);
-		    }  //3X4 v1
 
+				//状态按钮
+				console.log(servers[count]["serverStatus"]);
+		    	var disks = $(serverid).find('.diskFa i');
+		    	// console.log(disks);
+		    	var number = 0;
+                for (var i = 0; i < servers[count]["disks"].length; i++){
+		    		if (disks.eq(i).attr('data-health') != "health"){
+		    			number += 1;
+					}
+				}
+
+				if (servers[count]["serverStatus"] == "Connected"){
+                	if (number == 0){
+						// console.log("ok")
+						$('.info-box-content.machineContent').append('<button class="diskStatus success"><span>OK</span></button>');
+					}else{
+						$('.info-box-content.machineContent').append('<button class="diskStatus danger"><span>danger</span></button>');
+					};
+				}else{
+					$('.info-box-content.machineContent').append('<button class="diskStatus Disabled"><span>disabled</span></button>');
+				};
+
+				// console.log($('.info-box-content.machineContent'));
+
+
+		    }; //3X4 v1
+
+
+			// for (var k = 0; k < servers.length; k++){
+		    	//
+			// }
 
 		    // for (count = 0; count < servers.length; count++){
 				// var serverid = '#diskinfo' + servers[count]["serverId"];
@@ -80,33 +110,43 @@ $(document).ready(function(){
 
 		    function serversListFormat(serverId, i) {
 			    if (servers[i]["serverStatus"] == "Connected"){
-			      return '<div class="info-box"><span style = "color:green;" class="info-box-icon">'+
-					  '<i class="fa fa-fw fa-tv" title="服务器名称:'+ serverId+'"></i></span>'+
-					  '<div class="info-box-content" style="color: black;"> '+
+			      return '<div class="info-box">' +
+					  '<span style = "color:green;" class="info-box-icon">'+
+					  	'<i class="fa fa-fw cabinet" title="服务器名称:'+ serverId+'"></i>' +
+					  '</span>'+
+					  '<div class="info-box-content machineContent" style="color: black;"> '+
 					  '<span class="info-box-text">'+ serverId + '</span> '+
 					  '<div class="info-box-number" id="diskinfo'+ serverId + '"></div>'+
 					  '<button type="button" class="btn btn-primary btn-sm col-md-offset-10 pull-right serverRestart" id="Restart'+serverId+'"><i class="fa fa-refresh"></i><i style="font-style:normal;" data-lang="restart_mac"></i></button>'+
 					  '</div></div>';
 			    }else{
 			      return '<div class="info-box"><span style = "color:darkslategray" class="info-box-icon">'+
-					  '<i class="fa fa-fw fa-tv" title="服务器名称:'+ serverId+'"></i></span>  ' +
-					  '<div class="info-box-content" style="color: black"> ' +
+					  '<i class="fa fa-fw cabinet" title="服务器名称:'+ serverId+'"></i></span>  ' +
+					  '<div class="info-box-content machineContent" style="color: black"> ' +
 					  '<span class="info-box-text">'+ serverId + '</span>' +
 					  '<div class="info-box-number" id="diskinfo'+ serverId +'"></div>'+
 					  '<button type="button" class="btn btn-primary btn-sm col-md-offset-10 pull-right serverRestart" id="Restart'+serverId+'"><i class="fa fa-refresh" data-lang="restart_mac"></i></button>'+
 					  '</div></div>';
-			    }
-			}
+			    };
+			};
 		      
 		    function diskContentFormat(diskId , i, count){
+		    	var health = servers[count]["disks"][i]["diskStatus"];
 			    if (servers[count]["disks"][i]["diskStatus"] == "health") {
 			      // return '<a class="btn btn-app" rel="tooltip" title="存储设备名称: 166.111.131.144:/few/fe<br>状态: 在线" data-html="true">  <i class="glyphicon glyphicon-tasks text-success"></i>块名称</a>';
-			      return ' <i class="glyphicon glyphicon-tasks text-success" title="磁盘编号:'+ diskId + '"></i>'
+			      return ' <i class="fa fa-database text-success" data-health='+health+' title="磁盘编号:'+ diskId + '"></i>'
 			    }else{
 			      //  return '<a class="btn btn-app" rel="tooltip" title="存储设备名称: 166.111.131.144:/few/fe<br>状态: 在线" data-html="true">  <i class="glyphicon glyphicon text-danger"></i>块名称</a>';
-			      return ' <i class="glyphicon glyphicon-tasks text-danger" title="磁盘编号:'+ diskId + '"></i>'
+			      return ' <i class="fa fa-database text-danger" data-health='+health+' title="磁盘编号:'+ diskId + '"></i>'
 			    }
 			}
+
+			function machineStatus(number) {
+		    	if (number == 0){
+		    		return '<button class="diskStatus success"><span>OK</span></button>'
+				}
+
+            }
       		
     	});
     	//return serverStatusInfomat;
@@ -125,6 +165,6 @@ $(document).ready(function(){
     	$(".menu-item.volume .fa.fa-chevron-down").removeClass("fa-chevron-UP");
 		$("#volumeMNav").stop().animate({
 			height:"0"
-		},500)
-    })
-})
+		},500);
+    });
+});
