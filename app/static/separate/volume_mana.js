@@ -141,6 +141,7 @@ $(document).ready(function(){
 				}
 				
 				$.when(createajax()).done(function(data){
+				    console.log(data);
 					var result1 = data['success'];
 					var message1 = data['message'];
 					if(result1){

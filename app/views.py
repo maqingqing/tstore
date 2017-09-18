@@ -1,4 +1,5 @@
-#coding=utf-8
+# coding=utf-8
+from __future__ import print_function
 from flask import Flask, request, jsonify, render_template, redirect, url_for, flash, session
 from flask.ext.cache import Cache
 from redis_util import *
@@ -14,7 +15,6 @@ import time
 import redis
 import sys
 
-
 reload(sys)
 
 sys.setdefaultencoding('utf8')
@@ -22,13 +22,14 @@ sys.setdefaultencoding('utf8')
 app = Flask(__name__)
 
 from sql import db, User
+
 db.create_all()
 
 INVALID_PARAM = 'Invalid parameters.'
 NO_INFORMATION = 'No information at present.'
 DIS_MATCH_INFORMATION = 'Information dismatch.'
 START_SNMP_SERVICE = 'Please start snmp service on cluster.'
-WRONG = '''账号或密码错误'''
+WRONG = '账号或密码错误'
 
 cache = Cache(app, config={'CACHE_TYPE': 'redis',
                            'CACHE_REDIS_HOST': 'localhost',
@@ -172,7 +173,6 @@ def get_volume_names():
         return jsonify(success=False, message=NO_INFORMATION)
 '''
 
-
 '''
 @app.route('/volume/<string:volume_name>')
 def get_volume_info(volume_name):
@@ -186,49 +186,51 @@ def get_volume_info(volume_name):
 @app.route('/volume/add')
 def add_volume():
     # try:
-        while True:
-            result = rcon.set(LOCK_PASS, LOCK_PASS_VALUE, nx=True)
-            if result:
-                # parse request form
-                volume_name = request.args.get(NAME)
-                capacity = request.args.get(CAPACITY)
-                redundancy_ratio = request.args.get(REDUNDANCY_RATIO)
-                username = request.args.get(USERNAME)
-                if none(volume_name, capacity, redundancy_ratio):
-                    return jsonify(success=False, message='Request form lacks parameters.')
-                volume_name = str(volume_name)
-                capacity = str(capacity)
-                redundancy_ratio = str(redundancy_ratio)
-                logging.warning(redundancy_ratio)
-                # query nodes and disks,then generate max disk index per node
-                cluster_disks = json.loads(Redis.get(CLUSTER_DISKS), 'utf-8')
-                success, cluster_list = get_cluster_list()
-                max_dict_idx = dict()
-                if not success:
-                    return jsonify(success=False, message=NO_INFORMATION)
-                keys = cluster_disks.keys()
-                for node in cluster_list:
-                    if node not in keys:
-                        return jsonify(success=False, message=DIS_MATCH_INFORMATION)
-                    else:
-                        max_dict_idx[node] = len(cluster_disks[node])
-                Redis.rpush(VOLUME_OPERATE, VOLUME_OPERATE_CREATE_VALUE)
-                message1 = {TSTORE_MQ_TAG: TSTORE_MQ_TAG_CREATE, CLUSTERLIST: cluster_list, MAX_DICT_IDX: max_dict_idx,
-                            TSTORE_VOLUME_NAME: volume_name, CAPACITY: capacity, REDUNDANCY_RATIO: redundancy_ratio,
-                            USERNAME: username}
-                message2 = {TSTORE_MQ_TAG: VOLUME_START1, TSTORE_VOLUME_NAME: volume_name, USERNAME: username}
-                message3 = {TSTORE_MQ_TAG: ENABLE_VOLUME_QUOTA, TSTORE_VOLUME_NAME: volume_name, USERNAME: username}
-                message4 = {TSTORE_MQ_TAG: SET_VOLUME_QUOTA, TSTORE_VOLUME_NAME: volume_name, USERNAME: username}
-                message5 = {TSTORE_MQ_TAG: HMSET, TSTORE_VOLUME_NAME: volume_name, USERNAME: username}
-                message6 = {TSTORE_MQ_TAG: REFRESH_CREATE_VOLUME, TSTORE_VOLUME_NAME: volume_name, USERNAME: username}
-                Redis.rpush(TSTORE_CREATE_VOLUME, message1)
-                Redis.rpush(TSTORE_CREATE_VOLUME, message2)
-                Redis.rpush(TSTORE_CREATE_VOLUME, message3)
-                Redis.rpush(TSTORE_CREATE_VOLUME, message4)
-                Redis.rpush(TSTORE_CREATE_VOLUME, message5)
-                Redis.rpush(TSTORE_CREATE_VOLUME, message6)
-                Redis.delete(LOCK_PASS)
-                return jsonify(success=True, message="finish")
+    while True:
+        result = rcon.set(LOCK_PASS, LOCK_PASS_VALUE, nx=True)
+        if result:
+            # parse request form
+            volume_name = request.args.get(NAME)
+            capacity = request.args.get(CAPACITY)
+            redundancy_ratio = request.args.get(REDUNDANCY_RATIO)
+            username = request.args.get(USERNAME)
+            if none(volume_name, capacity, redundancy_ratio):
+                return jsonify(success=False, message='Request form lacks parameters.')
+            volume_name = str(volume_name)
+            capacity = str(capacity)
+            redundancy_ratio = str(redundancy_ratio)
+            logging.warning(redundancy_ratio)
+            # query nodes and disks,then generate max disk index per node
+            cluster_disks = json.loads(Redis.get(CLUSTER_DISKS), 'utf-8')
+            success, cluster_list = get_cluster_list()
+            max_dict_idx = dict()
+            if not success:
+                return jsonify(success=False, message=NO_INFORMATION)
+            keys = cluster_disks.keys()
+            print (keys)
+            for node in cluster_list:
+                print (node)
+                if node not in keys:
+                    return jsonify(success=False, message=DIS_MATCH_INFORMATION)
+                else:
+                    max_dict_idx[node] = len(cluster_disks[node])
+            Redis.rpush(VOLUME_OPERATE, VOLUME_OPERATE_CREATE_VALUE)
+            message1 = {TSTORE_MQ_TAG: TSTORE_MQ_TAG_CREATE, CLUSTERLIST: cluster_list, MAX_DICT_IDX: max_dict_idx,
+                        TSTORE_VOLUME_NAME: volume_name, CAPACITY: capacity, REDUNDANCY_RATIO: redundancy_ratio,
+                        USERNAME: username}
+            message2 = {TSTORE_MQ_TAG: VOLUME_START1, TSTORE_VOLUME_NAME: volume_name, USERNAME: username}
+            message3 = {TSTORE_MQ_TAG: ENABLE_VOLUME_QUOTA, TSTORE_VOLUME_NAME: volume_name, USERNAME: username}
+            message4 = {TSTORE_MQ_TAG: SET_VOLUME_QUOTA, TSTORE_VOLUME_NAME: volume_name, USERNAME: username}
+            message5 = {TSTORE_MQ_TAG: HMSET, TSTORE_VOLUME_NAME: volume_name, USERNAME: username}
+            message6 = {TSTORE_MQ_TAG: REFRESH_CREATE_VOLUME, TSTORE_VOLUME_NAME: volume_name, USERNAME: username}
+            Redis.rpush(TSTORE_CREATE_VOLUME, message1)
+            Redis.rpush(TSTORE_CREATE_VOLUME, message2)
+            Redis.rpush(TSTORE_CREATE_VOLUME, message3)
+            Redis.rpush(TSTORE_CREATE_VOLUME, message4)
+            Redis.rpush(TSTORE_CREATE_VOLUME, message5)
+            Redis.rpush(TSTORE_CREATE_VOLUME, message6)
+            Redis.delete(LOCK_PASS)
+            return jsonify(success=True, message="finish")
 
 
 # 处理同时create volume操作引发的冲突
@@ -410,12 +412,12 @@ def stop_volume():
         Redis.rpush(VOLUME_OPERATE, VOLUME_OPERATE_STOP_VALUE)
         message1 = {TSTORE_MQ_TAG: VOLUME_STOP1, TSTORE_VOLUME_NAME: volume_name}
         Redis.rpush(TSTORE_STOP_VOLUME, message1)
-        print "stop pre"
+        print("stop pre")
         result = Redis.blpop(TSTORE_STOP_RESULT, 300)
         if result:
-            print "stop next"
+            print ("stop next")
             dict_result = eval(result[1])
-            print dict_result[SUCCESS]
+            print (dict_result[SUCCESS])
             Redis.psetex("Refresh", 1, "ll")
             return jsonify(success=dict_result[SUCCESS], message=dict_result[OUT])
         else:
@@ -457,8 +459,8 @@ def get_restart_status():
     else:
         status = READY
     restart_result = Redis.lpop(TSTORE_RESTART_RESULT)
-    print status
-    print restart_result
+    print (status)
+    print (restart_result)
     if restart_result:
         dict_restart_result = eval(restart_result)
         if dict_restart_result[SUCCESS]:
@@ -601,7 +603,7 @@ def get_cluster_info():
             server = dict()
             server['serverId'] = machine['hostname']
             server['serverStatus'] = machine['status']
-            cluster_devices = json.loads(Redis.get(CLUSTER_DEVICE+machine['hostname']), 'utf-8')
+            cluster_devices = json.loads(Redis.get(CLUSTER_DEVICE + machine['hostname']), 'utf-8')
             # print cluster_devices
             disks = list()
             if machine['status'] == 'Connected':

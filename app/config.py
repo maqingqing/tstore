@@ -10,7 +10,7 @@ CONFIG_LOCAL_LOGFILE = '/root/wangjiang/gf-manager/glfs-web/debuglog.log'
 CONFIG_LOG_LOCATION = '/var/log/gf-management.log'
 
 # default disk mount prefix
-CONFIG_DISK_PREFIX = '/brick/brick'
+CONFIG_DISK_PREFIX = '/disk/disk'
 # brick index should start from 0 ,for example /brick/brick0 /brick/brick1 /brick/brick2 etc
 # CONFIG_DISK_PREFIX = '/brick/brick'
 

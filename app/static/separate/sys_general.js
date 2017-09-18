@@ -160,7 +160,6 @@ $(document).ready(function() {
         credits: {
             enabled: false
         },
-
         chart: {
             backgroundColor: "#ECF0F5",
             type: "line",

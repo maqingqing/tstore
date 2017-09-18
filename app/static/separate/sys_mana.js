@@ -10,6 +10,16 @@ $(document).ready(function(){
 			var servers = serversStatusinfo["servers"];
 			var count = 0;
 
+			// var serverslist1= $('#serversList1');
+			// var serverslist2= $('#serversList2');
+
+			// for(var i=0;i<servers.length/2;i++){
+			// 	serverslist1.append(serversListFormat(servers[i]["serverId"], count));//添加机器数量
+			// }
+			// for(var i=servers.length/2;i<servers.length;i++){
+			// 	serverslist2.append(serversListFormat(servers[i]["serverId"], count));//添加机器数量
+			// }
+
 		    for (count = 0; count < servers.length; count++){
 
 		    	serverslist.append(serversListFormat(servers[count]["serverId"], count));//添加机器数量
@@ -37,30 +47,26 @@ $(document).ready(function(){
 				disklist.append(diskRow4);
 
 				//状态按钮
-				console.log(servers[count]["serverStatus"]);
 		    	var disks = $(serverid).find('.diskFa i');
-		    	// console.log(disks);
 		    	var number = 0;
                 for (var i = 0; i < servers[count]["disks"].length; i++){
 		    		if (disks.eq(i).attr('data-health') != "health"){
 		    			number += 1;
 					}
+					disks.eq(i).parent('.diskFa').parent().attr('data-number',number);
 				}
 
+
 				if (servers[count]["serverStatus"] == "Connected"){
-                	if (number == 0){
-						// console.log("ok")
-						$('.info-box-content.machineContent').append('<button class="diskStatus success"><span>OK</span></button>');
+                	var healthNumber = $(serverid).attr('data-number');
+                	if (healthNumber == 0){
+						$('.info-box-content.machineContent').eq(count).append('<button class="diskStatus success"><span>OK</span></button>');
 					}else{
-						$('.info-box-content.machineContent').append('<button class="diskStatus danger"><span>danger</span></button>');
+						$('.info-box-content.machineContent').eq(count).append('<button class="diskStatus danger"><span>danger</span></button>');
 					};
 				}else{
-					$('.info-box-content.machineContent').append('<button class="diskStatus Disabled"><span>disabled</span></button>');
+					$('.info-box-content.machineContent').eq(count).append('<button class="diskStatus Disabled"><span>Disconnected</span></button>');
 				};
-
-				// console.log($('.info-box-content.machineContent'));
-
-
 		    }; //3X4 v1
 
 
@@ -140,13 +146,6 @@ $(document).ready(function(){
 			      return ' <i class="fa fa-database text-danger" data-health='+health+' title="磁盘编号:'+ diskId + '"></i>'
 			    }
 			}
-
-			function machineStatus(number) {
-		    	if (number == 0){
-		    		return '<button class="diskStatus success"><span>OK</span></button>'
-				}
-
-            }
       		
     	});
     	//return serverStatusInfomat;
