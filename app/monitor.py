@@ -19,14 +19,14 @@ class Monitor(threading.Thread):
                     whichOperate = Redis.lpop(VOLUME_OPERATE)
                     if whichOperate:
                         if whichOperate == VOLUME_OPERATE_CREATE_VALUE:
-                            logging.info("2")
+                            # logging.info("2")
                             logging.info(whichOperate)
                             i = 0
                             while i < 6:
                                 message = Redis.blpop(TSTORE_CREATE_VOLUME, 20)
                                 if message:
                                     dict_message = eval(message[1])
-                                    logging.info("3")
+                                    # logging.info("3")
                                     logging.info(dict_message)
                                     if dict_message[TSTORE_MQ_TAG] == TSTORE_MQ_TAG_CREATE:
                                         # create volume

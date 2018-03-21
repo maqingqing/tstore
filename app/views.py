@@ -43,6 +43,7 @@ rcon = redis.StrictRedis(host='localhost', db=0)
 @app.route('/')
 @app.route('/index')
 def index():
+
     if 'user' in session:
         user = session['user']
         return render_template('/index.html', username=user)
@@ -608,6 +609,7 @@ def get_cluster_info():
             disks = list()
             if machine['status'] == 'Connected':
                 raw_disks = cluster_devices
+                print(raw_disks)
                 for raw_disk in raw_disks:
                     if len(raw_disk) <= 3:
                         disk = dict()

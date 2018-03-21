@@ -30,21 +30,29 @@ $(document).ready(function(){
 				var diskRow2=$("<div class='diskFa'></div>");
 				var diskRow3=$("<div class='diskFa'></div>");
 				var diskRow4=$("<div class='diskFa'></div>");
+				var diskRow5=$("<div class='diskFa'></div>");
+				var diskRow6=$("<div class='diskFa'></div>");
 		      	for (var i = 0; i < servers[count]["disks"].length; i++){
 			        if(i<3){
-					  diskRow1.append(diskContentFormat(servers[count]["disks"][i]["diskId"], i, count));}
+					  	diskRow1.append(diskContentFormat(servers[count]["disks"][i]["diskId"], i, count));}
 					else if(i>=3&&i<6){
-    	              diskRow2.append(diskContentFormat(servers[count]["disks"][i]["diskId"], i, count));}
+    	              	diskRow2.append(diskContentFormat(servers[count]["disks"][i]["diskId"], i, count));}
 					else if(i>=6&&i<9){
 						diskRow3.append(diskContentFormat(servers[count]["disks"][i]["diskId"], i, count));
 					}else if(i>=9&&i<12){
 						diskRow4.append(diskContentFormat(servers[count]["disks"][i]["diskId"], i, count));
+					}else if(i>=12&&i<14){
+						diskRow5.append(diskContentFormat(servers[count]["disks"][i]["diskId"], i, count));
+					}else if(i>=14&&i<16){
+						diskRow6.append(diskContentFormat(servers[count]["disks"][i]["diskId"], i, count));
 					}
 		      	}
 				disklist.append(diskRow1);
 				disklist.append(diskRow2);
 				disklist.append(diskRow3);
 				disklist.append(diskRow4);
+				disklist.append(diskRow5);
+				disklist.append(diskRow6);
 
 				//状态按钮
 		    	var disks = $(serverid).find('.diskFa i');

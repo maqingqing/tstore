@@ -128,7 +128,7 @@ $(function(){
                 success: function (data) {
                     console.log(data);
                     if (data == "true") {
-                        window.location.href = "/index";
+                        window.location.href = "/";
                     } else {
                         $('#wrong').css("display", "block");
                     }
