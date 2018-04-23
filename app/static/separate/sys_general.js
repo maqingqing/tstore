@@ -34,6 +34,7 @@ $(document).ready(function() {
 	        var url = $SCRIPT_ROOT + '/overview/capacity';
 	        //    $.ajaxSetup({async:false});
 	        $.getJSON(url, null, function(data) {
+	            console.log(data);
 	            totalCapacity = data[0];
 	            availableCapacity = data[1];
 	            volume_numsCapacity = data[2];
@@ -156,175 +157,186 @@ $(document).ready(function() {
 //	        }
 	        //      colors: ['#ED561B', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
 	    });
-    $('#sum_diskio_speed').highcharts('StockChart', {
-        credits: {
-            enabled: false
-        },
-        chart: {
-            backgroundColor: "#ECF0F5",
-            type: "line",
-            reflow: true,
-            animation: false,
-            events: {
-                load: function(event) {
-                        var Series = this.series;
-                        //var data_string = localStorage.getItem("clusterinfo")
-                        //if (!data_string) {
-                           // alert("No use");
-                        //}
-                        //var data = JSON.parse(data_string);
-                        //var Length = data["cluster"][0]["init_disk_read_sum"].length - 1;
-                        //var valueTimeWrite = data["cluster"][0]["init_disk_write_sum"][Length];
-                        //var JsonDataWrite = eval('(' + valueTimeWrite + ')');
-                        //$("#sum_diskio_speed").attr("data-number", JsonDataWrite.time);
-                        setInterval(function() {
-                            var oldTime = $("#sum_diskio_speed").attr("data-number");
-                            var data_string = localStorage.getItem("clusterinfo")
-                            if (!data_string) {
-                                alert("No use");
-                            }
-                            var data = JSON.parse(data_string);
-                            var Length = data["cluster"][0]["init_disk_read_sum"].length - 1;
-                            var valueTimeRead = data["cluster"][0]["init_disk_read_sum"][Length];
-                            var JsonDataRead = eval('(' + valueTimeRead + ')');
-                            var valueTimeWrite = data["cluster"][0]["init_disk_write_sum"][Length];
-                            var JsonDataWrite = eval('(' + valueTimeWrite + ')');
-                            var newTime = parseInt(JsonDataWrite.time);
-                            var x = (new Date()).getTime();
-                            // console.log(oldTime)
-                            // console.log(newTime)
-                            // if (newTime > parseInt(oldTime)) {
-                            //     x = newTime;
-                            // } else if (newTime == parseInt(oldTime)) {
-                            //     x = parseInt(oldTime) + 2000;
-                            // } else {
-                            //     x = oldTime;
-                            // }
-                            //$("#sum_diskio_speed").attr("data-number", x);
-                            Series[0].addPoint([x, parseFloat(JsonDataRead.data)], true, true);
-                            Series[1].addPoint([x, parseFloat(JsonDataWrite.data)], true, true);
-                        }, 2000); //计时器结束
-                    } //load结束
-            }
-        },
-        yAxis: {
-            title: {
-                text: 'MB/s'
-            },
-            opposite: false,
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        rangeSelector: {
-            buttons: [{
-                count: 1,
-                type: 'minute',
-                text: '1M'
-            }, {
-                count: 5,
-                type: 'minute',
-                text: '5M'
-            }, {
-                type: 'all',
-                text: '1H'
-            }],
-            inputEnabled: false,
-            selected: 0
-        },
-        tooltip: {
-            formatter: function() {
-                var s = '<b style="font-weight:300;">' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '</b>';
+	    sys_general_highcharts1();//系统概要里面磁盘性能折线图
+	    function  sys_general_highcharts1() {
 
-                $.each(this.points, function() {
-                    if (this.y >= (1024 * 1024)) {
-                        var number = (this.y / (1024 * 1024)).toFixed(2) + "MB/s";
-                    } else if (this.y < (1024 * 1024)) {
-                        var number = (this.y / 1024).toFixed(2) + "KB/s";
-                    } else if (this.y <= 0) {
-                        this.y = 0;
-                        var number = "0KB/s";
+            $('#sum_diskio_speed').highcharts('StockChart', {
+                credits: {
+                    enabled: false
+                },
+                chart: {
+                    backgroundColor: "#ECF0F5",
+                    type: "line",
+                    reflow: true,
+                    animation: false,
+                    events: {
+                        load: function (event) {
+                            var Series = this.series;
+                            //var data_string = localStorage.getItem("clusterinfo")
+                            //if (!data_string) {
+                            // alert("No use");
+                            //}
+                            //var data = JSON.parse(data_string);
+                            //var Length = data["cluster"][0]["init_disk_read_sum"].length - 1;
+                            //var valueTimeWrite = data["cluster"][0]["init_disk_write_sum"][Length];
+                            //var JsonDataWrite = eval('(' + valueTimeWrite + ')');
+                            //$("#sum_diskio_speed").attr("data-number", JsonDataWrite.time);
+                            setInterval(function () {
+                                var oldTime = $("#sum_diskio_speed").attr("data-number");
+                                var data_string = localStorage.getItem("clusterinfo")
+                                if (!data_string) {
+                                    alert("No use");
+                                }
+                                var data = JSON.parse(data_string);
+                                var Length = data["cluster"][0]["init_disk_read_sum"].length - 1;
+                                var valueTimeRead = data["cluster"][0]["init_disk_read_sum"][Length];
+                                var JsonDataRead = eval('(' + valueTimeRead + ')');
+                                var valueTimeWrite = data["cluster"][0]["init_disk_write_sum"][Length];
+                                var JsonDataWrite = eval('(' + valueTimeWrite + ')');
+                                var newTime = parseInt(JsonDataWrite.time);
+                                var x = (new Date()).getTime();
+                                // console.log(oldTime)
+                                // console.log(newTime)
+                                // if (newTime > parseInt(oldTime)) {
+                                //     x = newTime;
+                                // } else if (newTime == parseInt(oldTime)) {
+                                //     x = parseInt(oldTime) + 2000;
+                                // } else {
+                                //     x = oldTime;
+                                // }
+                                //$("#sum_diskio_speed").attr("data-number", x);
+                                Series[0].addPoint([x, parseFloat(JsonDataRead.data)], true, true);
+                                Series[1].addPoint([x, parseFloat(JsonDataWrite.data)], true, true);
+                            }, 2000); //计时器结束
+                        } //load结束
                     }
-                    s += '<br/><span style="font-weight:800;color:' + this.series.color + ';">' + this.series.name + '</span>: <b>' + number + '</b>';
-                });
+                },
+                yAxis: {
+                    title: {
+                        text: 'MB/s'
+                    },
+                    opposite: false,
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                rangeSelector: {
+                    buttons: [{
+                        count: 1,
+                        type: 'minute',
+                        text: '1M'
+                    }, {
+                        count: 5,
+                        type: 'minute',
+                        text: '5M'
+                    }, {
+                        type: 'all',
+                        text: '1H'
+                    }],
+                    inputEnabled: false,
+                    selected: 0
+                },
+                tooltip: {
+                    formatter: function () {
+                        var s = '<b style="font-weight:300;">' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '</b>';
 
-                return s;
-            },
-            valueDecimals: 2,
-            shared: true,
-            useHTML: true,
-            shared: true
-        },
-        plotOptions: {
-            series: {
-                dataLabels: {
-                    allowOverlap: true
-                }
-            }
-        },
-        legend: {
-            enabled: true
-        },
-        title: {
-            text: ''
-        },
-        exporting: {
-            enabled: false
-        },
-        series: [{
-            name: 'Read',
-            data: (function() {
-                var data = [],
-                    time = (new Date()).getTime(),
-                    j;
-                var initArr = clusterInfo["init_disk_read_sum"];
-                var initLength = initArr.length;
-                var hopeLength = 360;
+                        $.each(this.points, function () {
+                            if (this.y >= (1024 * 1024)) {
+                                var number = (this.y / (1024 * 1024)).toFixed(2) + "MB/s";
+                            } else if (this.y < (1024 * 1024)) {
+                                var number = (this.y / 1024).toFixed(2) + "KB/s";
+                            } else if (this.y <= 0) {
+                                this.y = 0;
+                                var number = "0KB/s";
+                            }
+                            s += '<br/><span style="font-weight:800;color:' + this.series.color + ';">' + this.series.name + '</span>: <b>' + number + '</b>';
+                        });
 
-                if(initLength<hopeLength){
-                    for (var i = initLength; i < hopeLength; i++) {
-                        initArr[i] = 0;
-                    };
-                }
+                        return s;
+                    },
+                    valueDecimals: 2,
+                    shared: true,
+                    useHTML: true,
+                    shared: true
+                },
+                plotOptions: {
+                    series: {
+                        dataLabels: {
+                            allowOverlap: true
+                        }
+                    }
+                },
+                legend: {
+                    enabled: true
+                },
+                title: {
+                    text: ''
+                },
+                exporting: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Read',
+                    data: (function () {
+                        var data = [],
+                            time = (new Date()).getTime(),
+                            j;
+                        var initArr = clusterInfo["init_disk_read_sum"];
+                        var initLength = initArr.length;
+                        var hopeLength = 360;
 
-                for (j = -359; j < 0; j += 1) {
-                    var valueTime = initArr[j + 359];
-                    var JsonData = eval('(' + valueTime + ')');
-                    data.push([
-                        time + j * 1000,
-                        parseInt(JsonData.data)
-                    ]);
-                }
-                return data;
-            }())
-        }, {
-            name: 'Write',
-            data: (function() {
-                var data = [],
-                    time = (new Date()).getTime(),
-                    j;
-                var initArr = clusterInfo["init_disk_write_sum"];
-                var initLength = initArr.length;
-                var hopeLength = 360;
-                if(initLength<hopeLength){
-                    for (var i = initLength; i < hopeLength; i++) {
-                        initArr[i] = 0;
-                    };
-                }
-                for (j = -359; j < 0; j += 1) {
-                    var valueTime = initArr[j + 359];
-                    var JsonData = eval('(' + valueTime + ')');
-                    data.push([
-                        time + j * 1000,
-                        parseInt(JsonData.data)
-                    ]);
-                }
-                return data;
-            }()),
-            color: '#6FDB4B'
-        }]
+                        if (initLength < hopeLength) {
+                            for (var i = initLength; i < hopeLength; i++) {
+                                initArr[i] = 0;
+                            }
+                            ;
+                        }
+
+                        for (j = -359; j < 0; j += 1) {
+                            var valueTime = initArr[j + 359];
+                            var JsonData = eval('(' + valueTime + ')');
+                            data.push([
+                                time + j * 1000,
+                                parseInt(JsonData.data)
+                            ]);
+                        }
+                        return data;
+                    }())
+                }, {
+                    name: 'Write',
+                    data: (function () {
+                        var data = [],
+                            time = (new Date()).getTime(),
+                            j;
+                        var initArr = clusterInfo["init_disk_write_sum"];
+                        var initLength = initArr.length;
+                        var hopeLength = 360;
+                        if (initLength < hopeLength) {
+                            for (var i = initLength; i < hopeLength; i++) {
+                                initArr[i] = 0;
+                            }
+                            ;
+                        }
+                        for (j = -359; j < 0; j += 1) {
+                            var valueTime = initArr[j + 359];
+                            var JsonData = eval('(' + valueTime + ')');
+                            data.push([
+                                time + j * 1000,
+                                parseInt(JsonData.data)
+                            ]);
+                        }
+                        return data;
+                    }()),
+                    color: '#6FDB4B'
+                }]
+            });
+        };
+
+    $('#diskio_refresh').click(function(){
+        console.log('click');
+        sys_general_highcharts1();
     });
 
 
@@ -334,22 +346,23 @@ $(document).ready(function() {
     //      read_seri1.push(parseFloat(clusterInfo["init_network_in_sum"][rw_i]));
     //      write_seri1.push(parseFloat(clusterInfo["init_network_out_sum"][rw_i]));
     //  }
-
-    $('#sum_networkio_speed').highcharts('StockChart', {
-        credits: {
-            enabled: false
-        },
-        chart: {
-            backgroundColor: "#ECF0F5",
-            type: 'line',
-            reflow: true,
-            animation: false, // don't animate in old IE
-            events: {
-                load: function(event) {
+        sys_general_highcharts2();//系统概要里面网络性能折线图
+    function sys_general_highcharts2() {
+        $('#sum_networkio_speed').highcharts('StockChart', {
+            credits: {
+                enabled: false
+            },
+            chart: {
+                backgroundColor: "#ECF0F5",
+                type: 'line',
+                reflow: true,
+                animation: false, // don't animate in old IE
+                events: {
+                    load: function (event) {
                         var Series = this.series;
-                        setInterval(function() {
+                        setInterval(function () {
                             var x = (new Date()).getTime();
-                            var data_string = localStorage.getItem("clusterinfo")
+                            var data_string = localStorage.getItem("clusterinfo");
                             if (!data_string) {
                                 alert("No use");
                             }
@@ -366,132 +379,141 @@ $(document).ready(function() {
                             Series[1].addPoint([x, parseFloat(JsonDataOut.data)], true, true);
                         }, 2000); //计时器结束
                     } //load结束
-            }
-        },
-        yAxis: {
-            title: {
-                text: 'MB/s'
+                }
             },
-            opposite: false,
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        rangeSelector: {
-            buttons: [{
-                count: 1,
-                type: 'minute',
-                text: '1M'
-            }, {
-                count: 5,
-                type: 'minute',
-                text: '5M'
-            }, {
-                type: 'all',
-                text: '1H'
-            }],
-            inputEnabled: false,
-            selected: 0
-        },
-        tooltip: {
-            formatter: function() {
-                var s = '<b style="font-weight:300;">' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '</b>';
-                $.each(this.points, function() {
-                    if (this.y >= (1024 * 1024)) {
-                        var number = (this.y / (1024 * 1024)).toFixed(2) + "MB/s";
-                    } else if (this.y < (1024 * 1024)) {
-                        var number = (this.y / 1024).toFixed(2) + "KB/s";
-                    } else if (this.y <= 0) {
-                        this.y = 0;
-                        var number = "0KB/s";
-                    }
+            yAxis: {
+                title: {
+                    text: 'MB/s'
+                },
+                opposite: false,
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            rangeSelector: {
+                buttons: [{
+                    count: 1,
+                    type: 'minute',
+                    text: '1M'
+                }, {
+                    count: 5,
+                    type: 'minute',
+                    text: '5M'
+                }, {
+                    type: 'all',
+                    text: '1H'
+                }],
+                inputEnabled: false,
+                selected: 0
+            },
+            tooltip: {
+                formatter: function () {
+                    var s = '<b style="font-weight:300;">' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '</b>';
+                    $.each(this.points, function () {
+                        if (this.y >= (1024 * 1024)) {
+                            var number = (this.y / (1024 * 1024)).toFixed(2) + "MB/s";
+                        } else if (this.y < (1024 * 1024)) {
+                            var number = (this.y / 1024).toFixed(2) + "KB/s";
+                        } else if (this.y <= 0) {
+                            this.y = 0;
+                            var number = "0KB/s";
+                        }
 //                  if(this.series.name=='入流量'){
 //                  	this.series.name='in';
 //                  }else if(this.series.name=='出流量'){
 //                  	this.series.name='out'
 //                  }
-                    s += '<br/><span class="tipRead" style="font-weight:800;color:' + this.series.color + ';">' + this.series.name + '</span>: <b>' + number + '</b>';
+                        s += '<br/><span class="tipRead" style="font-weight:800;color:' + this.series.color + ';">' + this.series.name + '</span>: <b>' + number + '</b>';
 //              	console.log($(".tipRead"));
-                });
-                return s;
+                    });
+                    return s;
+                },
+                valueDecimals: 2,
+                useHTML: true,
+                shared: true
             },
-            valueDecimals: 2,
-            useHTML: true,
-            shared: true
-        },
-        plotOptions: {
-            series: {
-                dataLabels: {
-                    allowOverlap: true
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        allowOverlap: true
+                    }
                 }
-            }
-        },
-        legend: {
-            enabled: true
-        },
-        title: {
-            text: ''
-        },
-        exporting: {
-            enabled: false
-        },
-        series: [{
-            name: 'In',
-            data: (function() {
-                //var len = read_seri1.length;
-                var data = [],
-                    time = (new Date()).getTime(),
-                    j;
-                var initArr = clusterInfo["init_network_in_sum"];
-                var initLength = initArr.length;
-                var hopeLength = 360;
-                if(initLength<hopeLength){
-                    for (var i = initLength; i < hopeLength; i++) {
-                        initArr[i] = 0;
-                    };
-                }
+            },
+            legend: {
+                enabled: true
+            },
+            title: {
+                text: ''
+            },
+            exporting: {
+                enabled: false
+            },
+            series: [{
+                name: 'In',
+                data: (function () {
+                    //var len = read_seri1.length;
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        j;
+                    var initArr = clusterInfo["init_network_in_sum"];
+                    var initLength = initArr.length;
+                    var hopeLength = 360;
+                    if (initLength < hopeLength) {
+                        for (var i = initLength; i < hopeLength; i++) {
+                            initArr[i] = 0;
+                        }
+                        ;
+                    }
 
-                for (j = -359; j < 0; j += 1) {
-                    var valueTime = initArr[j + 359];
-                    var JsonData = eval('(' + valueTime + ')');
-                    data.push([
-                        time + j * 1000,
-                        parseInt(JsonData.data)
-                    ]);
-                }
+                    for (j = -359; j < 0; j += 1) {
+                        var valueTime = initArr[j + 359];
+                        var JsonData = eval('(' + valueTime + ')');
+                        data.push([
+                            time + j * 1000,
+                            parseInt(JsonData.data)
+                        ]);
+                    }
 
-                return data;
-            }())
-        }, {
-            name: 'Out',
-            data: (function() {
-                //var len = write_seri1.length;
-                var data = [],
-                    time = (new Date()).getTime(),
-                    j;
-                var initArr = clusterInfo["init_network_out_sum"];
-                var initLength = initArr.length;
-                var hopeLength = 360;
-                if(initLength<hopeLength){
-                    for (var i = initLength; i < hopeLength; i++) {
-                        initArr[i] = 0;
-                    };
-                }
-                for (j = -359; j < 0; j += 1) {
-                    var valueTime = initArr[j + 359];
-                    var JsonData = eval('(' + valueTime + ')');
-                    data.push([
-                        time + j * 1000,
-                        parseInt(JsonData.data)
-                    ]);
-                }
-                return data;
-            }()),
-            color: '#6FDB4B'
-        }]
+                    return data;
+                }())
+            }, {
+                name: 'Out',
+                data: (function () {
+                    //var len = write_seri1.length;
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        j;
+                    var initArr = clusterInfo["init_network_out_sum"];
+                    var initLength = initArr.length;
+                    var hopeLength = 360;
+                    if (initLength < hopeLength) {
+                        for (var i = initLength; i < hopeLength; i++) {
+                            initArr[i] = 0;
+                        }
+                        ;
+                    }
+                    for (j = -359; j < 0; j += 1) {
+                        var valueTime = initArr[j + 359];
+                        var JsonData = eval('(' + valueTime + ')');
+                        data.push([
+                            time + j * 1000,
+                            parseInt(JsonData.data)
+                        ]);
+                    }
+                    return data;
+                }()),
+                color: '#6FDB4B'
+            }]
+        });
+    }
+
+    $('#network_refresh').click(function(){
+        console.log('network');
+       sys_general_highcharts2();
     });
+
     for(var i=0;i<$('.highcharts-range-selector-buttons').length;i++){
     	$('.highcharts-range-selector-buttons:eq('+i+') text:eq(0)').attr('data-lang',"time");
     	$('.highcharts-range-selector-buttons:eq('+i+') text:eq(0)').attr('x',62);
@@ -503,4 +525,4 @@ $(document).ready(function() {
 	
 })
 
-})
+});

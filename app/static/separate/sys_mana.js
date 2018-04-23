@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	function getServerStatusInfo(){
+		$('#serversList').html('');
     	var url = $SCRIPT_ROOT + '/cluster/info';
     	var serverStatusInfo={};
       	//$.ajaxSetup({async:false});
@@ -78,10 +79,6 @@ $(document).ready(function(){
 		    }; //3X4 v1
 
 
-			// for (var k = 0; k < servers.length; k++){
-		    	//
-			// }
-
 		    // for (count = 0; count < servers.length; count++){
 				// var serverid = '#diskinfo' + servers[count]["serverId"];
 				// var disklist = $(serverid);
@@ -159,6 +156,8 @@ $(document).ready(function(){
     	//return serverStatusInfomat;
 	};
 	getServerStatusInfo();
+	// setInterval(getServerStatusInfo,1000);
+
     
     $(".menu-item.system").click(function(){
     	var monitorMNav_hide = $("#monitorMNav").css("height");

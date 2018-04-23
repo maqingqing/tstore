@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="83" autoUploadExternalChanges="true">
+  <component name="PublishConfigData" autoUpload="Always" serverName="tsotre" autoUploadExternalChanges="true">
     <serverData>
-      <paths name="83">
+      <paths name="tsotre">
         <serverdata>
           <mappings>
             <mapping deploy="/wangjiang/gf-manager/glfs-web" local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="gitlab">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/TSTOR-web/glfs-web" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

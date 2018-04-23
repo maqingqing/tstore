@@ -511,3 +511,14 @@ table{
 .diskStatus.danger{
 	background-color: #f5cb3e;
 }
+
+#network_refresh,#diskio_refresh{
+	    margin-left: 30px;
+    background: #3c8dbc;
+    outline: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 2px 9px;
+    border-radius: 4px;
+}

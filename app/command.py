@@ -491,7 +491,7 @@ def disk_io(hostname):
     disk_sds_indexs = list()
 
     for diskioDevi in disk_info:
-        logging.debug(diskioDevi)
+        # logging.debug(diskioDevi)
         if SD in diskioDevi:
             if SDM in diskioDevi:
                 continue
