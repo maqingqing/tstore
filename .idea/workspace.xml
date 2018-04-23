@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f858257-dff0-44d8-b0c5-20afdce6ee98" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/webServers.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/command.py" afterPath="$PROJECT_DIR$/app/command.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/css/indexstyle.css" afterPath="$PROJECT_DIR$/app/static/css/indexstyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/language/strings_en.properties" afterPath="$PROJECT_DIR$/app/static/language/strings_en.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/language/strings_zh.properties" afterPath="$PROJECT_DIR$/app/static/language/strings_zh.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/separate/sys_general.js" afterPath="$PROJECT_DIR$/app/static/separate/sys_general.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/separate/sys_mana.js" afterPath="$PROJECT_DIR$/app/static/separate/sys_mana.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/index.html" afterPath="$PROJECT_DIR$/app/templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
     </list>
     <ignored path="gf-management-website.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,14 +34,14 @@
       <file leaf-file-name="sys_mana.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/static/separate/sys_mana.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="231">
+              <caret line="176" column="32" lean-forward="false" selection-start-line="176" selection-start-column="32" selection-end-line="176" selection-end-column="32" />
               <folding>
-                <marker date="1524108561768" expanded="true" signature="4833:4845" ph="..." />
-                <marker date="1524108561768" expanded="true" signature="5023:5036" ph="..." />
-                <marker date="1524108561768" expanded="true" signature="5346:5364" ph="..." />
-                <marker date="1524108561768" expanded="true" signature="5497:5516" ph="..." />
-                <marker date="1524108561768" expanded="true" signature="5684:5696" ph="..." />
+                <marker date="1524469273245" expanded="true" signature="4923:4935" ph="..." />
+                <marker date="1524469273245" expanded="true" signature="5113:5126" ph="..." />
+                <marker date="1524469273245" expanded="true" signature="5436:5454" ph="..." />
+                <marker date="1524469273245" expanded="true" signature="5587:5606" ph="..." />
+                <marker date="1524469273245" expanded="true" signature="5774:5786" ph="..." />
               </folding>
             </state>
           </provider>
@@ -76,11 +67,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="515" column="40" lean-forward="true" selection-start-line="515" selection-start-column="40" selection-end-line="515" selection-end-column="40" />
+            <state relative-caret-position="211">
+              <caret line="504" column="16" lean-forward="true" selection-start-line="504" selection-start-column="16" selection-end-line="504" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="612" column="31" lean-forward="false" selection-start-line="612" selection-start-column="31" selection-end-line="612" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -146,7 +147,6 @@
       <find>glyphicon-tasks</find>
       <find>volume_list</find>
       <find>serverRestart</find>
-      <find>diskContentFormat</find>
       <find>serversListFormat</find>
       <find>serversList</find>
       <find>/overview/capacity</find>
@@ -169,6 +169,7 @@
       <find>restart_mac</find>
       <find>系统</find>
       <find>sysM</find>
+      <find>diskContentFormat</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -224,7 +225,6 @@
         <option value="$PROJECT_DIR$/app/executor.py" />
         <option value="$PROJECT_DIR$/app/monitor.py" />
         <option value="$PROJECT_DIR$/app/static/js1/login.js" />
-        <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/config.py" />
         <option value="$PROJECT_DIR$/app/command.py" />
         <option value="$PROJECT_DIR$/app/static/language/strings_en.properties" />
@@ -233,6 +233,7 @@
         <option value="$PROJECT_DIR$/app/static/language/strings_zh.properties" />
         <option value="$PROJECT_DIR$/app/static/separate/sys_general.js" />
         <option value="$PROJECT_DIR$/app/static/separate/sys_mana.js" />
+        <option value="$PROJECT_DIR$/app/views.py" />
       </list>
     </option>
   </component>
@@ -710,13 +711,14 @@
     <option name="totallyTimeSpent" value="136198000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32569295" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26455027" sideWeight="0.5020877" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32965213" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25813448" sideWeight="0.49791232" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32994923" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24958587" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -737,7 +739,6 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25921908" sideWeight="0.49791232" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31899264" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -940,13 +941,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11462">
-          <caret line="535" column="32" lean-forward="false" selection-start-line="535" selection-start-column="32" selection-end-line="535" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/js1/login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="849">
@@ -1045,32 +1039,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/separate/sys_mana.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <marker date="1524108561768" expanded="true" signature="4833:4845" ph="..." />
-            <marker date="1524108561768" expanded="true" signature="5023:5036" ph="..." />
-            <marker date="1524108561768" expanded="true" signature="5346:5364" ph="..." />
-            <marker date="1524108561768" expanded="true" signature="5497:5516" ph="..." />
-            <marker date="1524108561768" expanded="true" signature="5684:5696" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/separate/switch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="695">
           <caret line="34" column="35" lean-forward="true" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/language/strings_en.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="42" column="12" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -1085,8 +1057,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="515" column="40" lean-forward="true" selection-start-line="515" selection-start-column="40" selection-end-line="515" selection-end-column="40" />
+        <state relative-caret-position="211">
+          <caret line="504" column="16" lean-forward="true" selection-start-line="504" selection-start-column="16" selection-end-line="504" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/language/strings_en.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="42" column="12" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/separate/sys_mana.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="176" column="32" lean-forward="false" selection-start-line="176" selection-start-column="32" selection-end-line="176" selection-end-column="32" />
+          <folding>
+            <marker date="1524469273245" expanded="true" signature="4923:4935" ph="..." />
+            <marker date="1524469273245" expanded="true" signature="5113:5126" ph="..." />
+            <marker date="1524469273245" expanded="true" signature="5436:5454" ph="..." />
+            <marker date="1524469273245" expanded="true" signature="5587:5606" ph="..." />
+            <marker date="1524469273245" expanded="true" signature="5774:5786" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="612" column="31" lean-forward="false" selection-start-line="612" selection-start-column="31" selection-end-line="612" selection-end-column="31" />
           <folding />
         </state>
       </provider>

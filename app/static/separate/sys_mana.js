@@ -56,6 +56,7 @@ $(document).ready(function(){
 				disklist.append(diskRow6);
 
 				//状态按钮
+				//data-number用来表示磁盘的状态，如果number=0，则说明磁盘正常，否则不正常,若有大于等于一个磁盘不正常，系统管理页面左下角的按钮就为dangerous
 		    	var disks = $(serverid).find('.diskFa i');
 		    	var number = 0;
                 for (var i = 0; i < servers[count]["disks"].length; i++){
@@ -156,9 +157,51 @@ $(document).ready(function(){
     	//return serverStatusInfomat;
 	};
 	getServerStatusInfo();
-	// setInterval(getServerStatusInfo,1000);
 
-    
+	function now_refersh() {
+        var url = $SCRIPT_ROOT + '/cluster/info';
+        var serverStatusInfo = {};
+        $.getJSON(url, null, function (data) {
+            serverStatusInfomat = data;
+            var serverslist = $('#serversList');//系统管理页面里集群机器信息列表
+            var serversStatusinfo = serverStatusInfomat;
+            var servers = serversStatusinfo["servers"];
+            for (var count = 0; count < servers.length; count++) {
+
+                //每3秒刷新磁盘状态
+                var serverid = '#diskinfo' + servers[count]["serverId"];
+                var disks = $(serverid).find('.diskFa i');
+                var number = 0;
+                for (var i = 0; i < servers[count]["disks"].length; i++) {
+                    var health = servers[count]["disks"][i]["diskStatus"];
+                    if (health != 'health') {
+                        disks.eq(i).removeClass().addClass('fa fa-database text-danger');
+                        number += 1;
+                    }//刷新磁盘状态代码结束
+
+                    disks.eq(i).parent('.diskFa').parent().attr('data-number', number);
+                }
+
+                if (servers[count]["serverStatus"] == "Connected") {
+                    var healthNumber = $(serverid).attr('data-number');
+                    if (healthNumber == 0) {
+                        $('.diskStatus').html('ok').removeClass().addClass('diskStatus success');
+                    } else {
+                        $('.diskStatus').html('danger').removeClass().addClass('diskStatus danger');
+                    }
+                    ;
+                } else {
+                    $('.diskStatus').html('Disconnected').removeClass().addClass('diskStatus Disabled');
+                }
+                ;
+            }
+
+        });
+    };
+	setInterval(now_refersh, 3000);
+
+
+
     $(".menu-item.system").click(function(){
     	var monitorMNav_hide = $("#monitorMNav").css("height");
     	if(monitorMNav_hide != "0px"){

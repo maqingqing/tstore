@@ -609,7 +609,7 @@ def get_cluster_info():
             disks = list()
             if machine['status'] == 'Connected':
                 raw_disks = cluster_devices
-                print(raw_disks)
+                # print(raw_disks)
                 for raw_disk in raw_disks:
                     if len(raw_disk) <= 3:
                         disk = dict()
